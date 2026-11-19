@@ -1,0 +1,1875 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MED USP 2027 • Plataforma de Estudos Alta Performance (100% YouTube)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            usp: {
+              50: '#eef6ff',
+              100: '#d9eaff',
+              500: '#0b5ed7',
+              700: '#003b71',
+              800: '#002b54',
+              900: '#001d3a',
+            },
+            med: {
+              500: '#10b981',
+              600: '#059669',
+            },
+            gold: {
+              400: '#fbbf24',
+              500: '#d97706',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, h4, .font-display { font-family: 'Plus Jakarta Sans', sans-serif; }
+    ::-webkit-scrollbar { width: 7px; height: 7px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.45); border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(100, 116, 139, 0.75); }
+    .fade-in { animation: fadeIn 0.25s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-200 min-h-screen flex flex-col lg:flex-row">
+
+  <!-- Toast / Mensagem Flutuante (Substitui alert()) -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- Header Mobile -->
+  <header class="lg:hidden bg-usp-800 text-white px-4 py-3 flex items-center justify-between sticky top-0 z-40 shadow-md">
+    <div class="flex items-center gap-2.5">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-400 to-usp-500 flex items-center justify-center font-display font-extrabold text-white shadow">
+        USP
+      </div>
+      <div>
+        <h1 class="font-display font-bold text-base leading-tight">MED USP 2027</h1>
+        <p class="text-[11px] text-sky-200">Rumo à Pinheiros • 100% YouTube</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-2">
+      <button onclick="toggleTheme()" class="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-sm" title="Alternar Tema">
+        <span id="theme-icon-mobile">🌙</span>
+      </button>
+      <button onclick="toggleMobileMenu()" class="p-2 rounded-xl bg-white/10 hover:bg-white/20">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Sidebar de Navegação -->
+  <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-72 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 transform -translate-x-full lg:translate-x-0 lg:static transition-transform duration-200 flex flex-col justify-between shrink-0">
+    <div>
+      <!-- Logo & Título -->
+      <div class="p-6 border-b border-slate-100 dark:border-slate-800 hidden lg:flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-usp-700 via-usp-500 to-emerald-500 flex items-center justify-center text-white font-display font-extrabold text-lg shadow-lg shadow-usp-500/20">
+            FM
+          </div>
+          <div>
+            <div class="flex items-center gap-1.5">
+              <span class="font-display font-extrabold text-lg tracking-tight text-usp-800 dark:text-white">MED USP</span>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-300">2027</span>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Alta Performance • 100% Gratuito</p>
+          </div>
+        </div>
+        <button onclick="toggleTheme()" class="p-2 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Alternar Modo Claro/Escuro">
+          <span id="theme-icon-desktop">🌙</span>
+        </button>
+      </div>
+
+      <!-- Mini Card Streak & Meta -->
+      <div class="p-4 mx-4 mt-4 rounded-2xl bg-gradient-to-br from-usp-800 to-usp-900 text-white shadow-md">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-medium text-sky-200">Foco Medicina FMUSP</span>
+          <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">Meta: 162+ / 180</span>
+        </div>
+        <div class="flex items-end justify-between">
+          <div>
+            <p class="text-2xl font-display font-extrabold" id="sidebar-days-left">-- dias</p>
+            <p class="text-[11px] text-sky-200">até o ENEM Nov/2027</p>
+          </div>
+          <div class="text-right">
+            <p class="text-sm font-bold text-amber-300" id="sidebar-streak">🔥 0 dias</p>
+            <p class="text-[11px] text-sky-200">de constância</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Links de Navegação -->
+      <nav class="p-4 space-y-1.5" id="nav-menu">
+        <button onclick="switchTab('dashboard')" data-tab="dashboard" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition bg-usp-50 text-usp-700 dark:bg-usp-900/50 dark:text-sky-300">
+          <span>📊</span> Dashboard Geral
+        </button>
+        <button onclick="switchTab('cronograma')" data-tab="cronograma" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span>📅</span> Cronograma Jan–Nov
+        </button>
+        <button onclick="switchTab('grade')" data-tab="grade" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span>🧭</span> Grade Semanal & Metas
+        </button>
+        <button onclick="switchTab('simulados')" data-tab="simulados" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span>🎯</span> Simulados & Redações
+        </button>
+        <button onclick="switchTab('canais')" data-tab="canais" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span>▶️</span> Canais & Estratégia YT
+        </button>
+        <button onclick="switchTab('ferramentas')" data-tab="ferramentas" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span>⏱️</span> Pomodoro & Caderno de Erros
+        </button>
+      </nav>
+    </div>
+
+    <!-- Rodapé Sidebar: Backup JSON -->
+    <div class="p-4 border-t border-slate-100 dark:border-slate-800 space-y-2">
+      <p class="text-[11px] font-medium text-slate-400 uppercase tracking-wider px-1">Segurança dos Dados</p>
+      <div class="grid grid-cols-2 gap-2">
+        <button onclick="exportData()" class="px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition flex items-center justify-center gap-1">
+          💾 Exportar
+        </button>
+        <label class="px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition flex items-center justify-center gap-1 cursor-pointer">
+          📂 Importar
+          <input type="file" accept=".json" onchange="importData(event)" class="hidden" />
+        </label>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Overlay Mobile -->
+  <div id="mobile-overlay" onclick="toggleMobileMenu()" class="fixed inset-0 bg-slate-950/60 z-30 hidden lg:hidden"></div>
+
+  <!-- Conteúdo Principal -->
+  <main class="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto w-full overflow-x-hidden">
+
+    <!-- ==================== ABA 1: DASHBOARD GERAL ==================== -->
+    <section id="tab-dashboard" class="tab-content fade-in space-y-6">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1 rounded-full mb-1">
+            🩺 Projeto Caloura FMUSP 2027 • Sem Cursinho Pago
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 dark:text-white">Painel de Alta Performance</h2>
+          <p class="text-sm text-slate-500 dark:text-slate-400">Disciplina diária, resolução massiva de questões e constância vencem qualquer cursinho caro.</p>
+        </div>
+        <button onclick="registerStudyToday()" class="self-start md:self-auto px-5 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm shadow-lg shadow-emerald-600/20 transition flex items-center gap-2">
+          ✅ Registrar Dia Estudado (+1 Streak)
+        </button>
+      </div>
+
+      <!-- KPIs Principais -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+        <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold text-slate-500 uppercase">Edital Concluído</span>
+            <span class="w-8 h-8 rounded-xl bg-usp-50 dark:bg-usp-900/50 text-usp-700 dark:text-sky-300 flex items-center justify-center text-sm">📚</span>
+          </div>
+          <p class="text-3xl font-display font-extrabold text-slate-900 dark:text-white" id="kpi-topics-pct">0%</p>
+          <p class="text-xs text-slate-500 mt-1" id="kpi-topics-count">0 de 0 aulas/tópicos concluídos</p>
+          <div class="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full mt-3 overflow-hidden">
+            <div id="kpi-topics-bar" class="bg-usp-500 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold text-slate-500 uppercase">Questões Resolvidas</span>
+            <span class="w-8 h-8 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-sm">✍️</span>
+          </div>
+          <p class="text-3xl font-display font-extrabold text-slate-900 dark:text-white" id="kpi-questions-done">0</p>
+          <p class="text-xs text-slate-500 mt-1" id="kpi-questions-meta">Meta anual: ~13.500 questões</p>
+          <div class="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full mt-3 overflow-hidden">
+            <div id="kpi-questions-bar" class="bg-emerald-500 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold text-slate-500 uppercase">Aproveitamento Geral</span>
+            <span class="w-8 h-8 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center text-sm">🎯</span>
+          </div>
+          <p class="text-3xl font-display font-extrabold text-slate-900 dark:text-white" id="kpi-accuracy">0%</p>
+          <p class="text-xs text-slate-500 mt-1" id="kpi-accuracy-detail">0 acertos em 0 questões</p>
+          <p class="text-[11px] font-semibold text-amber-600 dark:text-amber-400 mt-2">Alvo USP: &gt; 88% de precisão</p>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold text-slate-500 uppercase">Média Simulados / Redação</span>
+            <span class="w-8 h-8 rounded-xl bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 flex items-center justify-center text-sm">🏆</span>
+          </div>
+          <p class="text-3xl font-display font-extrabold text-slate-900 dark:text-white" id="kpi-sim-avg">--</p>
+          <p class="text-xs text-slate-500 mt-1" id="kpi-essay-avg">Redação média: -- / 1000</p>
+          <p class="text-[11px] font-semibold text-purple-600 dark:text-purple-400 mt-2">Meta Redação USP: 960+</p>
+        </div>
+      </div>
+
+      <!-- Card Foco de Hoje (Detecta o dia da semana automaticamente) -->
+      <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-100 dark:border-slate-800">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              <h3 class="text-lg font-display font-bold text-slate-900 dark:text-white" id="today-title">Foco de Hoje</h3>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" id="today-subtitle">Carregando rotina do dia...</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <label class="text-xs font-medium text-slate-500">Simular dia:</label>
+            <select id="day-preview-select" onchange="renderTodayFocus(this.value)" class="text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-3 py-2 font-medium">
+              <option value="auto">Hoje (Automático)</option>
+              <option value="1">Segunda-feira</option>
+              <option value="2">Terça-feira</option>
+              <option value="3">Quarta-feira</option>
+              <option value="4">Quinta-feira</option>
+              <option value="5">Sexta-feira</option>
+              <option value="6">Sábado (Simulado & Redação)</option>
+              <option value="0">Domingo (Descanso Obrigatório)</option>
+            </select>
+          </div>
+        </div>
+        <div id="today-content" class="mt-4"></div>
+      </div>
+
+      <!-- Gráficos -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm">
+          <h3 class="font-display font-bold text-base text-slate-900 dark:text-white mb-1">Questões Resolvidas por Área do ENEM</h3>
+          <p class="text-xs text-slate-500 mb-4">Equilíbrio estratégico entre Natureza, Matemática, Humanas e Linguagens</p>
+          <div class="h-64">
+            <canvas id="chart-areas"></canvas>
+          </div>
+        </div>
+        <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm">
+          <h3 class="font-display font-bold text-base text-slate-900 dark:text-white mb-1">Evolução nos Simulados (Jan–Nov)</h3>
+          <p class="text-xs text-slate-500 mb-4">Acompanhe sua curva de acertos rumo aos 162+ acertos</p>
+          <div class="h-64">
+            <canvas id="chart-simulados"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ABA 2: CRONOGRAMA MENSAL JAN-NOV ==================== -->
+    <section id="tab-cronograma" class="tab-content hidden fade-in space-y-6">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 dark:text-white">Cronograma Completo: Janeiro a Novembro</h2>
+          <p class="text-sm text-slate-500 dark:text-slate-400">44 semanas estruturadas com todas as matérias, canais exatos e metas de questões. <strong class="text-emerald-600 dark:text-emerald-400">Domingos: Descanso total.</strong></p>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <span id="month-progress-badge" class="px-3.5 py-2 rounded-xl bg-usp-50 dark:bg-usp-900/50 text-usp-700 dark:text-sky-300 text-xs font-bold">
+            Progresso do Mês: 0%
+          </span>
+        </div>
+      </div>
+
+      <!-- Seletor de Meses (Jan a Nov) -->
+      <div class="bg-white dark:bg-slate-900 p-3 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-x-auto">
+        <div class="flex items-center gap-1.5 min-w-max" id="month-selector"></div>
+      </div>
+
+      <!-- Seletor de Semanas (Semana 1 a 4) & Filtro por Dia -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800">
+        <div class="flex flex-wrap items-center gap-2" id="week-selector"></div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-slate-500">Filtrar dia:</span>
+          <select id="filter-day-select" onchange="renderSchedule()" class="text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-3 py-2 font-semibold">
+            <option value="ALL">Todos os dias (Seg–Sáb)</option>
+            <option value="Segunda">Segunda-feira</option>
+            <option value="Terça">Terça-feira</option>
+            <option value="Quarta">Quarta-feira</option>
+            <option value="Quinta">Quinta-feira</option>
+            <option value="Sexta">Sexta-feira</option>
+            <option value="Sábado">Sábado (Simulado & Redação)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Banner Fase do Mês -->
+      <div id="month-phase-banner" class="p-4 rounded-2xl bg-gradient-to-r from-usp-800 to-usp-700 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow">
+        <div>
+          <span class="text-[11px] uppercase tracking-wider font-bold text-amber-300" id="phase-tag">FASE 1 • BASE SÓLIDA</span>
+          <h3 class="font-display font-bold text-base" id="phase-title">Janeiro — Construção de Fundamentos & Diagnóstico</h3>
+          <p class="text-xs text-sky-100 mt-0.5" id="phase-desc">Foco em teoria bem feita nos canais selecionados + bateria inicial de questões ENEM.</p>
+        </div>
+        <div class="text-xs bg-white/10 px-3.5 py-2 rounded-xl shrink-0">
+          <span class="block text-sky-200">Meta semanal de questões:</span>
+          <strong class="text-sm text-white" id="phase-weekly-q">~310 questões/semana</strong>
+        </div>
+      </div>
+
+      <!-- Lista de Dias e Matérias da Semana -->
+      <div id="schedule-container" class="space-y-5"></div>
+
+      <!-- Card fixo de Domingo na visualização semanal -->
+      <div class="p-5 rounded-2xl border-2 border-dashed border-emerald-300 dark:border-emerald-800/70 bg-emerald-50/50 dark:bg-emerald-950/20 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3.5">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-100 dark:bg-emerald-900/60 text-emerald-700 dark:text-emerald-300 flex items-center justify-center text-2xl shrink-0">
+            🌿
+          </div>
+          <div>
+            <h4 class="font-display font-bold text-base text-emerald-900 dark:text-emerald-200">Domingo — Descanso Obrigatório & Consolidação de Memória</h4>
+            <p class="text-xs text-emerald-700 dark:text-emerald-400">O sono e o descanso cognitivo consolidam no hipocampo tudo o que você estudou de Segunda a Sábado. Sem videoaulas hoje!</p>
+          </div>
+        </div>
+        <span class="text-xs font-bold px-3 py-1.5 rounded-full bg-emerald-200/70 dark:bg-emerald-900 text-emerald-900 dark:text-emerald-200 shrink-0">
+          0 Questões • 100% Recuperação
+        </span>
+      </div>
+    </section>
+
+    <!-- ==================== ABA 3: GRADE SEMANAL & METAS ==================== -->
+    <section id="tab-grade" class="tab-content hidden fade-in space-y-6">
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 dark:text-white">Grade Semanal Fixa & Metas de Questões</h2>
+        <p class="text-sm text-slate-500 dark:text-slate-400">Distribuição estratégica para Medicina na USP: peso máximo em Natureza, Matemática e Redação, sem negligenciar Humanas e Linguagens.</p>
+      </div>
+
+      <!-- Grade Segunda a Domingo -->
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4" id="weekly-blueprint-grid"></div>
+
+      <!-- Tabela de Metas de Questões por Nível -->
+      <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm overflow-x-auto">
+        <h3 class="font-display font-bold text-lg text-slate-900 dark:text-white mb-1">Volume de Questões Recomendado para Medicina USP</h3>
+        <p class="text-xs text-slate-500 mb-4">Quantidade ideal de exercícios por bloco de assunto estudado no YouTube</p>
+        <table class="w-full text-left border-collapse min-w-[600px]">
+          <thead>
+            <tr class="border-b border-slate-200 dark:border-slate-800 text-xs uppercase text-slate-500">
+              <th class="py-3 px-4">Disciplina</th>
+              <th class="py-3 px-4">Canal Oficial</th>
+              <th class="py-3 px-4">Frequência</th>
+              <th class="py-3 px-4">Meta Base (Jan–Jun)</th>
+              <th class="py-3 px-4">Meta Aprofundamento USP (Jul–Nov)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-sm">
+            <tr>
+              <td class="py-3 px-4 font-bold text-blue-600 dark:text-blue-400">Matemática</td>
+              <td class="py-3 px-4">Plataforma Assaad</td>
+              <td class="py-3 px-4">Segunda e Quinta</td>
+              <td class="py-3 px-4 font-semibold">35 questões / aula</td>
+              <td class="py-3 px-4 font-bold text-emerald-600">45–50 questões / aula</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 font-bold text-indigo-600 dark:text-indigo-400">Física</td>
+              <td class="py-3 px-4">Plataforma Assaad</td>
+              <td class="py-3 px-4">Terça e Sexta</td>
+              <td class="py-3 px-4 font-semibold">30 questões / aula</td>
+              <td class="py-3 px-4 font-bold text-emerald-600">40–45 questões / aula</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 font-bold text-teal-600 dark:text-teal-400">Química</td>
+              <td class="py-3 px-4">Plataforma Assaad</td>
+              <td class="py-3 px-4">Quarta e Sábado</td>
+              <td class="py-3 px-4 font-semibold">30 questões / aula</td>
+              <td class="py-3 px-4 font-bold text-emerald-600">40–45 questões / aula</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 font-bold text-emerald-600 dark:text-emerald-400">Biologia</td>
+              <td class="py-3 px-4">Plataforma Assaad</td>
+              <td class="py-3 px-4">Segunda e Quinta</td>
+              <td class="py-3 px-4 font-semibold">30 questões / aula</td>
+              <td class="py-3 px-4 font-bold text-emerald-600">40 questões / aula</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 font-bold text-sky-600 dark:text-sky-400">Linguagens</td>
+              <td class="py-3 px-4">Plataforma Assaad</td>
+              <td class="py-3 px-4">Terça e Sexta</td>
+              <td class="py-3 px-4 font-semibold">25 questões / aula</td>
+              <td class="py-3 px-4 font-bold text-emerald-600">30–35 questões / aula</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 font-bold text-amber-600 dark:text-amber-400">História</td>
+              <td class="py-3 px-4">Débora Aladim</td>
+              <td class="py-3 px-4">Quarta-feira</td>
+              <td class="py-3 px-4 font-semibold">25 questões / aula</td>
+              <td class="py-3 px-4 font-bold text-emerald-600">30 questões / aula</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 font-bold text-orange-600 dark:text-orange-400">Geografia</td>
+              <td class="py-3 px-4">Thais Formagio</td>
+              <td class="py-3 px-4">Quinta-feira</td>
+              <td class="py-3 px-4 font-semibold">25 questões / aula</td>
+              <td class="py-3 px-4 font-bold text-emerald-600">30 questões / aula</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 font-bold text-purple-600 dark:text-purple-400">Filosofia & Sociologia</td>
+              <td class="py-3 px-4">Parabólica</td>
+              <td class="py-3 px-4">Segunda e Terça</td>
+              <td class="py-3 px-4 font-semibold">20 questões / aula</td>
+              <td class="py-3 px-4 font-bold text-emerald-600">25–30 questões / aula</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 font-bold text-pink-600 dark:text-pink-400">Atualidades</td>
+              <td class="py-3 px-4">Parabólica</td>
+              <td class="py-3 px-4">Sexta-feira</td>
+              <td class="py-3 px-4 font-semibold">15 questões + fichamento</td>
+              <td class="py-3 px-4 font-bold text-emerald-600">20 questões + repertório</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 font-bold text-rose-600 dark:text-rose-400">Redação Nota 1000</td>
+              <td class="py-3 px-4">Luma e Ponto</td>
+              <td class="py-3 px-4">Quarta (Teoria) & Sábado (Texto)</td>
+              <td class="py-3 px-4 font-semibold">1 redação completa / semana</td>
+              <td class="py-3 px-4 font-bold text-emerald-600">1 redação (1h15 cronometrada)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ==================== ABA 4: SIMULADOS & REDAÇÕES ==================== -->
+    <section id="tab-simulados" class="tab-content hidden fade-in space-y-6">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 dark:text-white">Central de Simulados & Redações (Jan–Nov)</h2>
+          <p class="text-sm text-slate-500 dark:text-slate-400">Todos os sábados à tarde são sagrados para treino de resistência, gestão de tempo e estratégia TRI.</p>
+        </div>
+        <div class="px-4 py-2.5 rounded-2xl bg-amber-50 dark:bg-amber-950/50 border border-amber-200 dark:border-amber-800 text-xs">
+          <span class="font-bold text-amber-800 dark:text-amber-300 block">🎯 Régua de Corte Medicina USP (Ampla / PPI / EP):</span>
+          <span class="text-amber-700 dark:text-amber-400">Meta de treino: 158 a 168 acertos totais + 960 na Redação</span>
+        </div>
+      </div>
+
+      <!-- Cronograma Macro dos Sábados de Simulado -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+          <span class="text-xs font-bold text-usp-600 dark:text-sky-400 uppercase">Jan a Abr (Sábados)</span>
+          <h4 class="font-display font-bold text-base mt-1">Simulados Diagnósticos & Quinzenais</h4>
+          <p class="text-xs text-slate-500 mt-1.5">Sábados pares: Simulado ENEM (90 questões cronometradas). Sábados ímpares: Bateria de revisão cumulativa + Redação Luma e Ponto.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+          <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase">Mai a Jul (Sábados)</span>
+          <h4 class="font-display font-bold text-base mt-1">Simulados Completos Alternados (Dia 1 / Dia 2)</h4>
+          <p class="text-xs text-slate-500 mt-1.5">Todo sábado à tarde: 5h30 de prova real (Semana A: Linguagens + Humanas + Redação | Semana B: Natureza + Matemática).</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+          <span class="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase">Ago a Nov (Reta Final)</span>
+          <h4 class="font-display font-bold text-base mt-1">Provas Antigas ENEM Regular & PPL (2015–2026)</h4>
+          <p class="text-xs text-slate-500 mt-1.5">Simulação idêntica ao dia oficial, preenchimento de gabarito e correção minuciosa no Caderno de Erros.</p>
+        </div>
+      </div>
+
+      <!-- Formulário de Registro de Simulado -->
+      <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm">
+        <h3 class="font-display font-bold text-lg text-slate-900 dark:text-white mb-4">Registrar Novo Simulado / Redação</h3>
+        <form onsubmit="addSimulado(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-3">
+          <div class="lg:col-span-2">
+            <label class="block text-xs font-semibold text-slate-500 mb-1">Nome / Edição do Simulado</label>
+            <input type="text" id="sim-name" required placeholder="Ex: ENEM 2023 PPL - Dia 2" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-500 mb-1">Mês</label>
+            <select id="sim-month" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm">
+              <option>Janeiro</option><option>Fevereiro</option><option>Março</option><option>Abril</option>
+              <option>Maio</option><option>Junho</option><option>Julho</option><option>Agosto</option>
+              <option>Setembro</option><option>Outubro</option><option>Novembro</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-500 mb-1">Ling. (0-45)</label>
+            <input type="number" id="sim-ling" min="0" max="45" placeholder="--" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-500 mb-1">Hum. (0-45)</label>
+            <input type="number" id="sim-hum" min="0" max="45" placeholder="--" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-500 mb-1">Nat. (0-45)</label>
+            <input type="number" id="sim-nat" min="0" max="45" placeholder="--" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-500 mb-1">Mat. (0-45)</label>
+            <input type="number" id="sim-mat" min="0" max="45" placeholder="--" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm" />
+          </div>
+          <div class="sm:col-span-2 lg:col-span-2">
+            <label class="block text-xs font-semibold text-slate-500 mb-1">Nota Redação (0-1000)</label>
+            <input type="number" id="sim-red" min="0" max="1000" step="20" placeholder="Ex: 940" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm" />
+          </div>
+          <div class="sm:col-span-2 lg:col-span-3">
+            <label class="block text-xs font-semibold text-slate-500 mb-1">Diagnóstico / Observação</label>
+            <input type="text" id="sim-notes" placeholder="Ex: Errei 3 de eletrodinâmica por falta de tempo" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm" />
+          </div>
+          <div class="sm:col-span-2 lg:col-span-2 flex items-end">
+            <button type="submit" class="w-full py-2.5 px-4 rounded-xl bg-usp-700 hover:bg-usp-800 text-white font-semibold text-sm transition shadow">
+              + Salvar Simulado
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Histórico de Simulados -->
+      <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm overflow-x-auto">
+        <h3 class="font-display font-bold text-lg text-slate-900 dark:text-white mb-4">Histórico de Desempenho</h3>
+        <table class="w-full text-left border-collapse min-w-[700px]">
+          <thead>
+            <tr class="border-b border-slate-200 dark:border-slate-800 text-xs uppercase text-slate-500">
+              <th class="py-3 px-3">Mês</th>
+              <th class="py-3 px-3">Simulado</th>
+              <th class="py-3 px-3">LIN</th>
+              <th class="py-3 px-3">HUM</th>
+              <th class="py-3 px-3">NAT</th>
+              <th class="py-3 px-3">MAT</th>
+              <th class="py-3 px-3">Total</th>
+              <th class="py-3 px-3">Redação</th>
+              <th class="py-3 px-3">Ação</th>
+            </tr>
+          </thead>
+          <tbody id="simulados-table-body" class="divide-y divide-slate-100 dark:divide-slate-800 text-sm"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ==================== ABA 5: CANAIS & ESTRATÉGIA YT ==================== -->
+    <section id="tab-canais" class="tab-content hidden fade-in space-y-6">
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 dark:text-white">Seu Time de Professores no YouTube (100% Gratuito)</h2>
+        <p class="text-sm text-slate-500 dark:text-slate-400">Como estudar com método ativo em cada um dos 5 canais escolhidos para atingir nível de aprovação na FMUSP.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="channels-guide-grid"></div>
+    </section>
+
+    <!-- ==================== ABA 6: POMODORO & CADERNO DE ERROS ==================== -->
+    <section id="tab-ferramentas" class="tab-content hidden fade-in space-y-6">
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 dark:text-white">Ferramentas de Alta Performance</h2>
+        <p class="text-sm text-slate-500 dark:text-slate-400">Controle blocos profundos de concentração e transforme cada erro em aprendizado definitivo.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Timer Pomodoro -->
+        <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col items-center justify-between text-center">
+          <div class="w-full">
+            <span class="text-xs font-bold uppercase tracking-wider text-usp-600 dark:text-sky-400">Foco Profundo</span>
+            <h3 class="font-display font-bold text-xl mt-1">Timer Pomodoro ENEM</h3>
+            <div class="flex justify-center gap-2 mt-4">
+              <button onclick="setPomodoroMode(50, 'Foco Longo (50m)')" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-usp-50 text-usp-700 dark:bg-usp-900/60 dark:text-sky-300">50m Foco</button>
+              <button onclick="setPomodoroMode(25, 'Foco Clássico (25m)')" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">25m Foco</button>
+              <button onclick="setPomodoroMode(10, 'Pausa Estratégica')" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300">10m Pausa</button>
+            </div>
+          </div>
+
+          <div class="my-8">
+            <p class="text-xs font-medium text-slate-400 mb-1" id="pomo-status">Foco Longo (50m)</p>
+            <div class="text-6xl font-display font-extrabold tracking-tight text-slate-900 dark:text-white" id="pomo-display">50:00</div>
+          </div>
+
+          <div class="flex items-center gap-3 w-full">
+            <button onclick="togglePomodoro()" id="pomo-start-btn" class="flex-1 py-3 rounded-2xl bg-usp-700 hover:bg-usp-800 text-white font-bold text-sm transition shadow">
+              ▶ Iniciar
+            </button>
+            <button onclick="resetPomodoro()" class="px-4 py-3 rounded-2xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 font-semibold text-sm transition">
+              ↺ Resetar
+            </button>
+          </div>
+        </div>
+
+        <!-- Caderno de Erros Digital -->
+        <div class="lg:col-span-2 bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-rose-600 dark:text-rose-400">Ouro da Aprovação em Medicina</span>
+            <h3 class="font-display font-bold text-xl mt-0.5">Caderno de Erros & Lacunas</h3>
+            <p class="text-xs text-slate-500">Quem passa na USP não repete o mesmo erro duas vezes. Registre o motivo e revise toda semana.</p>
+          </div>
+
+          <form onsubmit="addErrorNote(event)" class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <select id="err-subject" class="px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm">
+              <option>Matemática (Assaad)</option>
+              <option>Física (Assaad)</option>
+              <option>Química (Assaad)</option>
+              <option>Biologia (Assaad)</option>
+              <option>Linguagens (Assaad)</option>
+              <option>História (Débora Aladim)</option>
+              <option>Geografia (Thais Formagio)</option>
+              <option>Filosofia/Sociologia (Parabólica)</option>
+              <option>Redação (Luma e Ponto)</option>
+            </select>
+            <select id="err-reason" class="px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm">
+              <option value="Lacuna Teórica">Motivo: Lacuna Teórica</option>
+              <option value="Falta de Atenção / Leitura">Motivo: Atenção / Interpretação</option>
+              <option value="Erro de Cálculo / Fórmula">Motivo: Cálculo / Fórmula</option>
+              <option value="Gestão de Tempo">Motivo: Tempo Excedido</option>
+            </select>
+            <button type="submit" class="py-2.5 px-4 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-semibold text-sm transition">
+              + Adicionar ao Caderno
+            </button>
+            <div class="sm:col-span-3">
+              <input type="text" id="err-desc" required placeholder="Descreva a questão errada e o conceito exato que você precisa lembrar..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm" />
+            </div>
+          </form>
+
+          <div id="errors-list" class="space-y-2.5 max-h-72 overflow-y-auto pr-1"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // =========================================================================
+    // 1. DADOS ESTRUTURADOS DO CRONOGRAMA (JANEIRO A NOVEMBRO - 44 SEMANAS)
+    // =========================================================================
+    const MONTHS_INFO = [
+      { id: 0, name: 'Janeiro', short: 'Jan', phase: 'FASE 1 • FUNDAMENTAÇÃO & DIAGNÓSTICO', title: 'Janeiro — Alicerce Teórico & Matemática Básica', desc: 'Construção de base inabalável em Matemática, Física, Química, Biologia e estrutura de Redação.', weeklyQ: '~315 questões/semana' },
+      { id: 1, name: 'Fevereiro', short: 'Fev', phase: 'FASE 1 • FUNDAMENTAÇÃO & RITMO', title: 'Fevereiro — Consolidação de Conceitos-Chave', desc: 'Avanço em Funções, Cinemática, Atomística, Citologia, Brasil Colônia e Repertórios Coringas.', weeklyQ: '~320 questões/semana' },
+      { id: 2, name: 'Março', short: 'Mar', phase: 'FASE 1 • EXPANSÃO DO EDITAL', title: 'Março — Leis de Newton, Ligações Químicas & Império', desc: 'Aumento gradual da dificuldade das listas de exercícios e treino rigoroso de Competências da Redação.', weeklyQ: '~335 questões/semana' },
+      { id: 3, name: 'Abril', short: 'Abr', phase: 'FASE 2 • CONEXÃO INTERDISCIPLINAR', title: 'Abril — Energia, Termoquímica, Genética & República', desc: 'Assuntos de altíssima incidência no ENEM com resolução cronometrada e análise de distratores.', weeklyQ: '~350 questões/semana' },
+      { id: 4, name: 'Maio', short: 'Mai', phase: 'FASE 2 • APROFUNDAMENTO USP', title: 'Maio — Geometria, Eletrostática, Soluções & Geopolítica', desc: 'Início dos simulados completos alternados nos sábados à tarde para ganhar resistência mental.', weeklyQ: '~365 questões/semana' },
+      { id: 5, name: 'Junho', short: 'Jun', phase: 'FASE 2 • FECHAMENTO DO 1º SEMESTRE', title: 'Junho — Trigonometria, Eletrodinâmica, Orgânica & Fisiologia', desc: 'Tópicos campeões de nota na TRI. Revisão cumulativa dos pontos fracos do primeiro semestre.', weeklyQ: '~380 questões/semana' },
+      { id: 6, name: 'Julho', short: 'Jul', phase: 'FASE 3 • VIRADA DE CHAVE & SIMULADOS', title: 'Julho — Espacial, Magnetismo, Equilíbrio & Evolução', desc: 'Intensificação na resolução de questões nível difícil do ENEM e redações em 1h15.', weeklyQ: '~400 questões/semana' },
+      { id: 7, name: 'Agosto', short: 'Ago', phase: 'FASE 3 • ALTA PERFORMANCE TRI', title: 'Agosto — Análise Combinatória, Ondulatória & Eletroquímica', desc: 'Domínio das questões que diferenciam candidatos de Medicina USP da média nacional.', weeklyQ: '~415 questões/semana' },
+      { id: 8, name: 'Setembro', short: 'Set', phase: 'FASE 4 • RETA FINAL & PROVAS ANTIGAS', title: 'Setembro — Probabilidade, Óptica, Polímeros & Ecologia', desc: 'Maratona de provas antigas ENEM (Regular + PPL) e fechamento completo do conteúdo programático.', weeklyQ: '~430 questões/semana' },
+      { id: 9, name: 'Outubro', short: 'Out', phase: 'FASE 4 • REVISÃO CIRÚRGICA & SIMULADOS', title: 'Outubro — Revisão de Ouro: Top 20 Assuntos do ENEM', desc: 'Revisão ativa focada exclusivamente nos temas de maior incidência + simulados semanais completos.', weeklyQ: '~450 questões/semana' },
+      { id: 10, name: 'Novembro', short: 'Nov', phase: 'FASE 5 • SEMANA DO ENEM & CONSOLIDAÇÃO', title: 'Novembro — Ajustes Finais, Calma & Execução Máxima', desc: 'Revisão leve de fórmulas, repertórios de redação, controle emocional e prova oficial.', weeklyQ: '~250 questões + Prova' }
+    ];
+
+    // Mapeamento dos 5 canais oficiais solicitados
+    const CHANNELS = {
+      assaad: {
+        name: 'Plataforma Assaad',
+        badge: 'bg-blue-100 text-blue-800 dark:bg-blue-900/60 dark:text-blue-300',
+        url: 'https://www.youtube.com/@PlataformaAssaad',
+        searchBase: 'https://www.youtube.com/results?search_query=Plataforma+Assaad+'
+      },
+      parabolica: {
+        name: 'Parabólica',
+        badge: 'bg-purple-100 text-purple-800 dark:bg-purple-900/60 dark:text-purple-300',
+        url: 'https://www.youtube.com/@Parabolica',
+        searchBase: 'https://www.youtube.com/results?search_query=Parabolica+Pedro+Renno+'
+      },
+      debora: {
+        name: 'Débora Aladim',
+        badge: 'bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300',
+        url: 'https://www.youtube.com/@deboraaladim',
+        searchBase: 'https://www.youtube.com/results?search_query=Debora+Aladim+'
+      },
+      luma: {
+        name: 'Luma e Ponto',
+        badge: 'bg-rose-100 text-rose-800 dark:bg-rose-900/60 dark:text-rose-300',
+        url: 'https://www.youtube.com/@lumaePonto',
+        searchBase: 'https://www.youtube.com/results?search_query=Luma+e+Ponto+'
+      },
+      thais: {
+        name: 'Thais Formagio',
+        badge: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300',
+        url: 'https://www.youtube.com/@ThaisFormagio',
+        searchBase: 'https://www.youtube.com/results?search_query=Thais+Formagio+'
+      }
+    };
+
+    // Grade semanal estruturada por matéria para gerar as 44 semanas (11 meses x 4 semanas) com progressão real de conteúdo
+    const SYLLABUS_44_WEEKS = {
+      matematica: [
+        // Jan (1-4)
+        "Operações Básicas, Frações e Potenciação", "Radiciação, Racionalização e Produtos Notáveis", "Razão, Proporção e Escalas Cartográficas", "Regra de Três Simples e Composta",
+        // Fev (5-8)
+        "Porcentagem e Aumentos/Descontos Sucessivos", "Matemática Financeira: Juros Simples e Compostos", "Equações do 1º e 2º Grau e Sistemas Lineares", "Introdução às Funções, Domínio e Leitura de Gráficos",
+        // Mar (9-12)
+        "Função Afim (1º Grau): Coeficientes e Aplicações ENEM", "Função Quadrática (2º Grau): Vértice, Raízes e Máximos/Mínimos", "Função Exponencial e Crescimento Populacional", "Logaritmos: Propriedades e Função Logarítmica",
+        // Abr (13-16)
+        "Progressão Aritmética (PA): Termo Geral e Soma", "Progressão Geométrica (PG) e Aplicações", "Estatística I: Média, Moda e Mediana", "Estatística II: Variância, Desvio Padrão e Interpretação",
+        // Mai (17-20)
+        "Geometria Plana I: Ângulos, Triângulos e Teorema de Tales", "Geometria Plana II: Semelhança de Triângulos e Pitágoras", "Geometria Plana III: Quadriláteros e Polígonos", "Geometria Plana IV: Áreas de Figuras Planas e Círculo",
+        // Jun (21-24)
+        "Trigonometria no Triângulo Retângulo (Seno, Cosseno, Tangente)", "Ciclo Trigonométrico e Lei dos Senos e Cossenos", "Geometria Espacial I: Prismas e Cubos", "Geometria Espacial II: Cilindros e Aplicações de Volume",
+        // Jul (25-28)
+        "Geometria Espacial III: Pirâmides e Cones", "Geometria Espacial IV: Esferas e Inscrição de Sólidos", "Projeção Ortogonal e Visão Espacial (Clássico ENEM)", "Análise Combinatória I: Princípio Fundamental da Contagem",
+        // Ago (29-32)
+        "Análise Combinatória II: Permutação Simples e com Repetição", "Análise Combinatória III: Arranjo vs Combinação", "Probabilidade I: Definição e União de Eventos", "Probabilidade II: Probabilidade Condicional e Binomial",
+        // Set (33-36)
+        "Geometria Analítica: Distância, Ponto Médio e Reta", "Equação da Circunferência e Posições Relativas", "Matrizes e Interpretação de Tabelas", "Revisão TRI: Razão, Proporção, Porcentagem e Escala",
+        // Out (37-40)
+        "Revisão TRI: Estatística, Gráficos e Probabilidade", "Revisão TRI: Geometria Plana e Espacial", "Revisão TRI: Funções Afim, Quadrática e Exponencial", "Maratona Questões Difíceis ENEM (Combinatória & Log)",
+        // Nov (41-44)
+        "Revisão Final: Fórmulas Essenciais de Geometria e Finanças", "Simulado Comentado Matemática ENEM", "Checklist de Atenção e Pegadinhas de Prova", "Descanso Mental & Revisão Leve Pré-Prova"
+      ],
+      fisica: [
+        // Jan
+        "Grandezas Físicas, Unidades (SI) e Ordem de Grandeza", "Vetores e Cinemática Escalar: Velocidade Média", "Movimento Uniforme (MU) e Gráficos", "Movimento Uniformemente Variado (MUV) e Torricelli",
+        // Fev
+        "Queda Livre e Lançamento Vertical", "Lançamento Horizontal e Oblíquo", "Movimento Circular Uniforme (MCU) e Transmissão", "Leis de Newton I: Inércia e Princípio Fundamental (F=ma)",
+        // Mar
+        "Leis de Newton II: Ação e Reação, Peso e Normal", "Força de Atrito e Plano Inclinado", "Força Elástica (Lei de Hooke) e Centrípeta", "Trabalho Mecânico e Potência",
+        // Abr
+        "Energia Cinética, Potencial e Conservação de Energia", "Impulso, Quantidade de Movimento e Colisões", "Gravitação Universal e Leis de Kepler", "Hidrostática I: Densidade, Pressão e Teorema de Stevin",
+        // Mai
+        "Hidrostática II: Princípio de Pascal e Empuxo (Arquimedes)", "Termometria e Dilatação Térmica", "Calorimetria: Calor Sensível, Latente e Trocas de Calor", "Propagação de Calor (Condução, Convecção, Irradiação)",
+        // Jun
+        "Termodinâmica: Leis da Termodinâmica e Máquinas Térmicas", "Eletrostática: Carga Elétrica, Lei de Coulomb e Campo", "Potencial Elétrico e Trabalho da Força Elétrica", "Eletrodinâmica I: Corrente Elétrica e 1ª e 2ª Leis de Ohm",
+        // Jul
+        "Eletrodinâmica II: Associação de Resistores (Série/Paralelo)", "Eletrodinâmica III: Potência Elétrica e Consumo (kWh)", "Geradores, Receptores e Medidores Elétricos", "Eletromagnetismo I: Ímãs, Campo Magnético e Força Magnética",
+        // Ago
+        "Eletromagnetismo II: Indução Eletromagnética e Transformadores", "Ondulatória I: Classificação e Equação Fundamental (v=λ.f)", "Ondulatória II: Reflexão, Refração, Difração e Interferência", "Acústica: Qualidades Fisiológicas do Som e Efeito Doppler",
+        // Set
+        "Óptica Geométrica I: Espelhos Planos e Esféricos", "Óptica Geométrica II: Refração da Luz e Lentes Esféricas", "Óptica da Visão: Miopia, Hipermetropia e Astigmatismo", "Física Moderna: Efeito Fotoelétrico e Dualidade Onda-Partícula",
+        // Out
+        "Revisão Ouro ENEM: Eletrodinâmica e Energia Elétrica", "Revisão Ouro ENEM: Termologia, Calorimetria e Ondulatória", "Revisão Ouro ENEM: Mecânica, Energia e Hidrostática", "Revisão Ouro ENEM: Óptica e Acústica",
+        // Nov
+        "Formulário Geral de Física ENEM", "Resolução Dirigida Questões Clássicas ENEM", "Estratégia de Resolução Rápida Dia 2", "Descanso Mental & Revisão Leve Pré-Prova"
+      ],
+      quimica: [
+        // Jan
+        "Propriedades da Matéria, Substâncias e Misturas", "Separação de Misturas (Destilação, Filtração, Decantação)", "Modelos Atômicos (Dalton, Thomson, Rutherford, Bohr)", "Estrutura Atômica, Isótopos e Distribuição Eletrônica",
+        // Fev
+        "Tabela Periódica e Propriedades Periódicas", "Ligações Químicas I: Ligação Iônica e Metálica", "Ligações Químicas II: Ligação Covalente e Polaridade", "Geometria Molecular e Forças Intermoleculares",
+        // Mar
+        "Funções Inorgânicas I: Ácidos e Bases", "Funções Inorgânicas II: Sais e Óxidos (Chuva Ácida)", "Reações Inorgânicas e Balanceamento", "Leis Ponderais e Cálculo de Massa Molar (Mol)",
+        // Abr
+        "Estequiometria I: Casos Gerais e Rendimento", "Estequiometria II: Pureza e Reagente em Excesso", "Estudo dos Gases e Equação de Clapeyron", "Soluções I: Concentração Comum, Molaridade e Diluição",
+        // Mai
+        "Soluções II: Mistura de Soluções e Titulação", "Propriedades Coligativas (Tonoscopia, Ebulioscopia, Osmose)", "Termoquímica I: Entalpia, Endotérmico e Exotérmico", "Termoquímica II: Lei de Hess e Energia de Ligação",
+        // Jun
+        "Cinética Química: Velocidade das Reações e Catalisadores", "Equilíbrio Químico I: Kc, Kp e Princípio de Le Chatelier", "Equilíbrio Iônico: pH, pOH e Hidrólise Salina", "Eletroquímica I: Pilhas (Daniell) e Potencial de Redução",
+        // Jul
+        "Eletroquímica II: Eletrólise Ígnea e Aquosa", "Radioatividade: Emissões Alfa, Beta, Gama e Meia-Vida", "Química Orgânica I: Classificação de Cadeias Carbônicas", "Química Orgânica II: Hidrocarbonetos e Nomenclatura",
+        // Ago
+        "Química Orgânica III: Funções Oxigenadas (Álcool, Aldeído, Cetona, Ácido)", "Química Orgânica IV: Funções Nitrogenadas e Haletos", "Isomeria Plana e Espacial (Geométrica e Óptica)", "Reações Orgânicas I: Substituição e Adição",
+        // Set
+        "Reações Orgânicas II: Eliminação, Oxidação e Esterificação", "Polímeros Sintéticos, Naturais e Reciclagem", "Química Ambiental: Efeito Estufa, Ozônio e Tratamento de Água", "Revisão Ouro: Físico-Química (Estequiometria, pH e Pilhas)",
+        // Out
+        "Revisão Ouro: Química Orgânica e Interações Intermoleculares", "Revisão Ouro: Separação de Misturas e Química Ambiental", "Revisão Ouro: Termoquímica e Cinética", "Maratona de Questões ENEM Química",
+        // Nov
+        "Mapa Mental de Reações e Funções Orgânicas", "Revisão de Cálculos Químicos Diretos", "Checklist Final de Química", "Descanso Mental & Revisão Leve Pré-Prova"
+      ],
+      biologia: [
+        // Jan
+        "Bioquímica I: Água, Sais Minerais e Vitaminas", "Bioquímica II: Carboidratos e Lipídios", "Bioquímica III: Proteínas, Enzimas e Ácidos Nucleicos", "Citologia I: Membrana Plasmática e Transportes",
+        // Fev
+        "Citologia II: Organelas Citoplasmáticas", "Metabolismo Energético I: Respiração Celular e Fermentação", "Metabolismo Energético II: Fotossíntese e Quimiossíntese", "Núcleo Celular, Cromossomos e Síntese Proteica",
+        // Mar
+        "Divisão Celular: Mitose e Meiose (Erros Cromossômicos)", "Histologia Animal: Tecidos Epitelial, Conjuntivo, Muscular e Nervoso", "Fisiologia Humana I: Sistema Digestório e Respiratório", "Fisiologia Humana II: Sistema Cardiovascular e Excretor",
+        // Abr
+        "Fisiologia Humana III: Sistema Nervoso e Endócrino", "Imunologia: Vacinas, Soros e Defesa do Organismo", "Reprodução Humana e Métodos Contraceptivos", "Genética I: 1ª Lei de Mendel e Heredogramas",
+        // Mai
+        "Genética II: Polialelia, Sistema ABO e Fator Rh", "Genética III: 2ª Lei de Mendel e Linkage", "Biotecnologia: Transgênicos, Clonagem, PCR e CRISPR", "Evolução I: Lamarckismo, Darwinismo e Neodarwinismo",
+        // Jun
+        "Evolução II: Especiação e Evidências Evolutivas", "Botânica I: Grupos Vegetais (Briófitas a Angiospermas)", "Botânica II: Fisiologia Vegetal e Hormônios", "Zoologia I: Poríferos, Cnidários, Platelmintos e Nematelmintos",
+        // Jul
+        "Zoologia II: Anelídeos, Moluscos, Artrópodes e Equinodermos", "Zoologia III: Vertebrados (Peixes a Mamíferos)", "Microbiologia: Vírus, Bactérias, Protozoários e Fungos", "Doenças Infecciosas e Parasitárias (Profilaxia ENEM)",
+        // Ago
+        "Ecologia I: Cadeias, Teias Alimentares e Pirâmides Ecológicas", "Ecologia II: Ciclos Biogeoquímicos (Carbono, Nitrogênio, Água)", "Ecologia III: Relações Ecológicas e Sucessão Ecológica", "Ecologia IV: Impactos Ambientais (Eutrofização, Magnificação Trófica)",
+        // Set
+        "Biomas Brasileiros e Conservação da Biodiversidade", "Revisão Ouro: Ecologia e Impactos Ambientais (Top 1 ENEM)", "Revisão Ouro: Fisiologia Humana e Imunologia", "Revisão Ouro: Citologia e Metabolismo Energético",
+        // Out
+        "Revisão Ouro: Genética e Biotecnologia", "Revisão Ouro: Evolução e Doenças Parasitárias", "Maratona de Questões ENEM Biologia", "Simulado Comentado Biologia",
+        // Nov
+        "Revisão Rápida de Ciclos Biogeoquímicos e Hormônios", "Mapa Mental de Vacinas, Soros e Doenças", "Checklist Final Biologia", "Descanso Mental & Revisão Leve Pré-Prova"
+      ],
+      linguagens: [
+        // Jan
+        "Funções da Linguagem (Jakobson) no ENEM", "Níveis de Linguagem e Variação Linguística", "Gêneros Textuais Digitais e Cotidianos", "Interpretação de Texto: Inferência e Pressupostos",
+        // Fev
+        "Figuras de Linguagem I: Metáfora, Metonímia, Ironia", "Figuras de Linguagem II: Antítese, Paradoxo, Eufemismo", "Intertextualidade: Paráfrase, Paródia e Citação", "Coesão e Coerência Textual",
+        // Mar
+        "Trovadorismo, Humanismo e Classicismo", "Quinhentismo e Literatura Informativa no Brasil", "Barroco no Brasil (Gregório de Matos e Padre Vieira)", "Arcadismo no Brasil (Cláudio Manuel e Tomás Antônio)",
+        // Abr
+        "Romantismo I: Poesia (1ª, 2ª e 3ª Gerações)", "Romantismo II: Prosa Urbana, Indianista e Regional", "Realismo e Naturalismo (Machado de Assis e Aluísio Azevedo)", "Parnasianismo e Simbolismo",
+        // Mai
+        "Pré-Modernismo (Euclides da Cunha, Lima Barreto, Monteiro Lobato)", "Vanguardas Europeias (Cubismo, Futurismo, Surrealismo)", "Semana de Arte Moderna de 1922 e 1ª Fase Modernista", "Modernismo 2ª Fase: Poesia (Drummond, Cecília Meireles)",
+        // Jun
+        "Modernismo 2ª Fase: Prosa Regionalista (Graciliano Ramos)", "Modernismo 3ª Fase (Clarice Lispector e Guimarães Rosa)", "Literatura Contemporânea e Poesia Marginal", "Artes Visuais, Música e Patrimônio Cultural Brasileiro",
+        // Jul
+        "Educação Física no ENEM: Corpo, Saúde e Práticas Corporais", "Tecnologias da Informação e Comunicação (TICs)", "Semântica, Polissemia e Ambiguidade", "Morfologia e Sintaxe Aplicadas à Leitura",
+        // Ago
+        "Língua Estrangeira (Inglês/Espanhol): Estratégias de Leitura", "Interpretação de Charges, Tirinhas e Cartuns", "Publicidade, Propaganda e Persuassão", "Textos Jornalísticos e Argumentativos",
+        // Set
+        "Revisão Ouro: Variação Linguística e Funções da Linguagem", "Revisão Ouro: Modernismo e Literatura Contemporânea", "Revisão Ouro: Artes, Corpo e Tecnologia no ENEM", "Técnicas de Eliminação de Distratores em Linguagens",
+        // Out
+        "Maratona de Interpretação ENEM (Prova Completa)", "Revisão de Figuras de Linguagem e Gêneros Textuais", "Treino de Velocidade de Leitura (3 min/questão)", "Simulado Comentado Linguagens",
+        // Nov
+        "Revisão Leve de Escolas Literárias", "Checklist de Estratégia para o Dia 1", "Leitura Ativa e Gestão de Tempo", "Descanso Mental & Revisão Leve Pré-Prova"
+      ],
+      historia: [
+        // Jan
+        "Antiguidade Oriental e Grécia Antiga (Democracia)", "Roma Antiga: República, Império e Legado", "Idade Média: Feudalismo e Igreja Católica", "Expansão Marítima Europeia e Mercantilismo",
+        // Fev
+        "América Pré-Colombiana e Colonização Espanhola", "Brasil Colônia I: Período Pré-Colonial e Capitanias", "Brasil Colônia II: Economia Açucareira e Escravidão", "Brasil Colônia III: Mineração e Sociedade Mineradora",
+        // Mar
+        "Revoluções Inglesas e Iluminismo", "Revolução Industrial e Transformações Sociais", "Revolução Francesa e Era Napoleônica", "Independência dos EUA e da América Latina",
+        // Abr
+        "Revoltas Nativistas e Emancipacionistas no Brasil", "Período Joanino e Independência do Brasil (1822)", "Primeiro Reinado e Período Regencial (Revoltas)", "Segundo Reinado I: Política, Café e Imigração",
+        // Mai
+        "Segundo Reinado II: Guerra do Paraguai e Abolicionismo", "Primeira República I: República da Espada e Oligarquias", "Primeira República II: Coronelismo e Revoltas (Canudos, Vacina)", "Primeira Guerra Mundial e Revolução Russa",
+        // Jun
+        "Crise de 1929 e Ascensão dos Regimes Totalitários", "Era Vargas I: Governo Provisório e Constitucional", "Era Vargas II: Estado Novo, Trabalhismo e Propaganda", "Segunda Guerra Mundial e Holocausto",
+        // Jul
+        "Guerra Fria: Bipolaridade e Corrida Espacial", "Descolonização da África e da Ásia", "República Populista (Dutra, Vargas, JK, Jânio, Jango)", "Golpe de 1964 e Ditadura Militar no Brasil (AI-5)",
+        // Ago
+        "Redemocratização, Diretas Já e Constituição de 1988", "Nova República: Collor, Plano Real, FHC, Lula e Dilma", "Ditaduras na América Latina (Chile, Argentina)", "História da África e Cultura Afro-Brasileira",
+        // Set
+        "Patrimônio Histórico, Memória e Cidadania no Brasil", "Revisão Ouro: Brasil Colônia e Escravidão", "Revisão Ouro: Segundo Reinado e Era Vargas", "Revisão Ouro: Ditadura Militar e Redemocratização",
+        // Out
+        "Revisão Ouro: Idade Contemporânea e Guerras Mundiais", "Revisão Ouro: Revolução Industrial e Iluminismo", "Maratona de Questões ENEM História", "Simulado Comentado História",
+        // Nov
+        "Linha do Tempo Geral do Brasil", "Revisão de Conceitos-Chave de Cidadania", "Checklist Final História", "Descanso Mental & Revisão Leve Pré-Prova"
+      ],
+      geografia: [
+        // Jan
+        "Cartografia: Escalas, Projeções e Fusos Horários", "Geologia e Estrutura Interna da Terra", "Relevo Brasileiro e Agentes Externos/Internos", "Climatologia I: Fatores Climáticos e Dinâmica Atmosférica",
+        // Fev
+        "Climatologia II: Climas do Brasil e Fenômenos (El Niño)", "Hidrografia Brasileira e Bacias Hidrográficas", "Biomas e Domínios Morfoclimáticos (Aziz Ab'Sáber)", "Questões Ambientais: Desmatamento, Queimadas e Água",
+        // Mar
+        "Demografia I: Crescimento Populacional e Transição", "Demografia II: Pirâmides Etárias e Migrações", "Urbanização Brasileira e Problemas Socioambientais Urbanos", "Geografia Agrária I: Estrutura Fundiária e Reforma Agrária",
+        // Abr
+        "Geografia Agrária II: Agronegócio, Revolução Verde e Transgênicos", "Industrialização Mundial e Revoluções Industriais", "Industrialização Brasileira (Vargas a JK e Desconcentração)", "Fontes de Energia I: Combustíveis Fósseis",
+        // Mai
+        "Fontes de Energia II: Renováveis e Matriz Energética Brasileira", "Globalização, Blocos Econômicos e Comércio Mundial", "Geopolítica I: Nova Ordem Mundial e Conflitos Atuais", "Geopolítica II: Oriente Médio, Rússia-Ucrânia e China",
+        // Jun
+        "Transportes e Logística no Brasil", "Solos: Formação, Erosão e Conservação", "Divisão Regional do Brasil (IBGE e Geoeconômica)", "América Latina: Aspectos Físicos e Socioeconômicos",
+        // Jul
+        "África e Ásia: Desenvolvimento e Desigualdades", "Recursos Minerais e Extrativismo no Brasil", "Sustentabilidade, Conferências Ambientais e Crédito de Carbono", "Redes Urbanas, Metropolização e Gentrificação",
+        // Ago
+        "Revisão Ouro: Geografia Agrária e Conflitos no Campo", "Revisão Ouro: Climatologia, Biomas e Impactos Ambientais", "Revisão Ouro: Urbanização e Demografia Brasileira", "Revisão Ouro: Globalização e Geopolítica",
+        // Set
+        "Revisão Ouro: Fontes de Energia e Industrialização", "Revisão Ouro: Cartografia e Relevo", "Questões Interdisciplinares Geografia + Atualidades", "Maratona de Questões ENEM Geografia",
+        // Out
+        "Análise de Mapas, Climogramas e Pirâmides", "Revisão de Atualidades Ambientais e Geopolíticas", "Simulado Comentado Geografia", "Ajuste Fino de Conteúdos Geográficos",
+        // Nov
+        "Mapa Mental de Domínios Morfoclimáticos", "Revisão Rápida de Energia e Agronegócio", "Checklist Final Geografia", "Descanso Mental & Revisão Leve Pré-Prova"
+      ],
+      filosofia_sociologia: [
+        // Jan
+        "Filosofia: Surgimento da Filosofia e Pré-Socráticos", "Filosofia: Sócrates, Sofistas e Método Maiêutico", "Filosofia: Platão (Mundo das Ideias e Caverna)", "Filosofia: Aristóteles (Ética, Política e Lógica)",
+        // Fev
+        "Filosofia: Helenismo (Estoicismo, Epicurismo, Ceticismo)", "Filosofia Medieval: Patrística (Agostinho) e Escolástica (Tomás)", "Filosofia Moderna: Racionalismo (Descartes)", "Filosofia Moderna: Empirismo (Locke, Hume e Bacon)",
+        // Mar
+        "Filosofia: Contratualistas (Hobbes, Locke e Rousseau)", "Filosofia: Immanuel Kant (Criticismo e Imperativo Categórico)", "Filosofia Contemporânea: Nietzsche e Existencialismo (Sartre)", "Escola de Frankfurt: Indústria Cultural (Adorno e Horkheimer)",
+        // Abr
+        "Filosofia Política: Foucault (Biopoder) e Hannah Arendt", "Bioética, Ética Contemporânea e Hans Jonas", "Sociologia: Surgimento da Sociologia e Auguste Comte", "Sociologia Clássica: Émile Durkheim (Fato Social)",
+        // Mai
+        "Sociologia Clássica: Max Weber (Ação Social e Burocracia)", "Sociologia Clássica: Karl Marx (Classes e Mais-Valia)", "Cultura, Diversidade, Etnocentrismo e Relativismo", "Indústria Cultural, Mídia e Sociedade de Consumo",
+        // Jun
+        "Estratificação, Desigualdade Social e Mobilidade", "Trabalho no Século XXI, Uberização e Precarização", "Cidadania, Direitos Humanos e Constituição", "Movimentos Sociais (Feminista, Negro, Ambiental, Indígena)",
+        // Jul
+        "Sociologia Brasileira: Gilberto Freyre, Sérgio Buarque e Caio Prado", "Violência, Estado e Democracia no Brasil", "Gênero, Raça e Estruturas Sociais no Brasil", "Revisão Ouro Filosofia: Ética e Política (Aristóteles, Kant)",
+        // Ago
+        "Revisão Ouro Filosofia: Contratualistas e Escola de Frankfurt", "Revisão Ouro Sociologia: Durkheim, Weber e Marx", "Revisão Ouro Sociologia: Cultura, Trabalho e Cidadania", "Repertórios Filosóficos para Redação Nota 1000",
+        // Set
+        "Filosofia da Ciência e Epistemologia", "Democracia Participativa e Esfera Pública (Habermas)", "Maratona de Questões ENEM Filosofia", "Maratona de Questões ENEM Sociologia",
+        // Out
+        "Revisão de Pensadores Mais Cobrados no ENEM", "Conexão Filosofia + Sociologia + Redação", "Simulado Comentado Humanas", "Ajuste Fino de Conceitos",
+        // Nov
+        "Dicionário de Conceitos Filosóficos e Sociológicos", "Revisão de Repertórios Socioculturais", "Checklist Final Humanas", "Descanso Mental & Revisão Leve Pré-Prova"
+      ],
+      atualidades: [
+        // Jan
+        "Inteligência Artificial, Ética Digital e Futuro do Trabalho", "Crise Climática Global e Eventos Extremos", "Desinformação, Algoritmos e Democracia", "Saúde Mental na Contemporaneidade",
+        // Fev
+        "Desafios da Educação Pública e Inclusão Digital", "Insegurança Alimentar e Combate à Fome", "Envelhecimento Populacional e Previdência", "Direitos dos Povos Indígenas e Demarcação",
+        // Mar
+        "Mobilidade Urbana e Cidades Sustentáveis", "Violência nas Escolas e Cultura de Paz", "Saneamento Básico e Saúde Pública no Brasil", "Economia Circular e Crise do Plástico",
+        // Abr
+        "Conflitos Geopolíticos Atuais e Refugiados", "Transição Energética e Hidrogênio Verde", "Cultura do Cancelamento e Redes Sociais", "Trabalho Invisível e Economia do Cuidado",
+        // Mai
+        "Etarismo e Inclusão da Pessoa Idosa", "Capacitismo e Acessibilidade no Brasil", "Vícios Digitais, Jogos de Apostas e Saúde", "Segurança Hídrica e Preservação da Amazônia",
+        // Jun
+        "Biotecnologia, Bioética e Limites da Ciência", "Democratização do Acesso à Cultura e ao Esporte", "Desigualdade Regional e Desenvolvimento no Brasil", "Políticas Públicas de Vacinação e Ciência",
+        // Jul
+        "Cyberbullying e Proteção de Dados (LGPD)", "Racismo Ambiental e Justiça Climática", "Valorização dos Profissionais da Educação e Saúde", "Patrimônio Cultural e Memória Nacional",
+        // Ago
+        "Impactos das Mudanças Climáticas na Agricultura", "Sub-representação Política e Cidadania", "Dignidade Menstrual e Saúde da Mulher", "Alfabetização Midiática e Pensamento Crítico",
+        // Set
+        "Eixos Temáticos ENEM: Saúde e Bem-Estar", "Eixos Temáticos ENEM: Meio Ambiente e Sustentabilidade", "Eixos Temáticos ENEM: Tecnologia e Sociedade", "Eixos Temáticos ENEM: Minorias e Direitos Humanos",
+        // Out
+        "Retrospectiva dos Principais Debates do Ano", "Repertórios Atuais para Qualquer Tema de Redação", "Simulado de Interpretação de Atualidades", "Revisão de Eixos Temáticos",
+        // Nov
+        "Checklist de Repertórios Socioculturais", "Conexões entre Atualidades e Geografia/Sociologia", "Revisão Leve de Temas Quentes", "Descanso Mental & Revisão Leve Pré-Prova"
+      ],
+      redacao: [
+        // Jan
+        "Entendendo as 5 Competências da Grade ENEM + Redação Diagnóstica", "Estrutura da Introdução Nota 1000 + 1 Redação Prática", "Como Construir a Tese e o Projeto de Texto + 1 Redação", "Repertórios Socioculturais Coringas (Filosofia/Sociologia) + 1 Redação",
+        // Fev
+        "Desenvolvimento 1: Tópico Frasal e Fundamentação + 1 Redação", "Desenvolvimento 2: Argumentação Crítica e Consequência + 1 Redação", "Coesão Interparágrafos e Intraparágrafos (Conectivos) + 1 Redação", "Conclusão: Os 5 Elementos Obrigatórios da Proposta + 1 Redação",
+        // Mar
+        "Competência 1: Gramática, Crase, Vírgula e Regência + 1 Redação", "Competência 2: Como Não Tangenciar o Tema + 1 Redação", "Competência 3: Autoria e Defesa de Ponto de Vista + 1 Redação", "Competência 4: Evitando Repetições de Palavras + 1 Redação",
+        // Abr
+        "Competência 5: Detalhamento Perfeito da Proposta + 1 Redação", "Eixo Temático: Educação e Tecnologia + 1 Redação", "Eixo Temático: Saúde Pública e Bem-Estar + 1 Redação", "Eixo Temático: Meio Ambiente e Sustentabilidade + 1 Redação",
+        // Mai
+        "Eixo Temático: Segurança, Violência e Cidadania + 1 Redação", "Eixo Temático: Grupos Minoritários e Inclusão + 1 Redação", "Eixo Temático: Trabalho e Economia + 1 Redação", "Análise de Redações Nota 1000 Oficiais + 1 Redação",
+        // Jun
+        "Como Usar Constituição Federal de 1988 na Redação + 1 Redação", "Como Usar Zygmunt Bauman e Byung-Chul Han + 1 Redação", "Treino de Planejamento de Texto em 10 Minutos + 1 Redação", "Revisão Semestral de Erros Gramaticais + 1 Redação",
+        // Jul
+        "Redação Cronometrada (Meta: 1h20) + Análise C1-C5", "Redação Cronometrada: Tema Eixo Social + Correção", "Redação Cronometrada: Tema Eixo Ambiental + Correção", "Redação Cronometrada: Tema Eixo Digital + Correção",
+        // Ago
+        "Refinamento de Vocabulário Culto e Precisão Semântica + 1 Redação", "Como Corrigir Própria Redação com Rigor de Banca + 1 Redação", "Treino de Folha Definitiva (Letra Legível e Margens) + 1 Redação", "Redação Cronometrada (Meta: 1h15) + Análise",
+        // Set
+        "Simulação Real Dia 1: Redação + 90 Questões", "Temas Inéditos e Apostas para o ENEM + 1 Redação", "Estratégias para Temas Abstratos ou Filosóficos + 1 Redação", "Redação Cronometrada (Meta: 1h10) + Análise",
+        // Out
+        "Revisão dos 10 Melhores Conectivos e Repertórios + 1 Redação", "Treino de Agilidade: Rascunho Estruturado + 1 Redação", "Última Redação Completa Cronometrada Pré-Prova", "Análise Final de Todos os Critérios (960–1000)",
+        // Nov
+        "Revisão do Esqueleto Estratégico de Redação", "Checklist das 5 Competências Antes da Prova", "Leitura de 2 Redações Nota 1000 para Inspiração", "Descanso Mental & Confiança Total"
+      ]
+    };
+
+    // Grade semanal padrão (Segunda a Sábado)
+    const WEEKLY_STRUCTURE = [
+      {
+        day: 'Segunda',
+        dayIndex: 1,
+        focus: 'Exatas, Natureza & Pensamento Crítico',
+        items: [
+          { subject: 'Matemática', key: 'matematica', channel: 'assaad', qMeta: 40, area: 'Matemática' },
+          { subject: 'Biologia', key: 'biologia', channel: 'assaad', qMeta: 35, area: 'Natureza' },
+          { subject: 'Filosofia / Sociologia', key: 'filosofia_sociologia', channel: 'parabolica', qMeta: 20, area: 'Humanas' }
+        ]
+      },
+      {
+        day: 'Terça',
+        dayIndex: 2,
+        focus: 'Física, Interpretação & Humanas',
+        items: [
+          { subject: 'Física', key: 'fisica', channel: 'assaad', qMeta: 35, area: 'Natureza' },
+          { subject: 'Linguagens', key: 'linguagens', channel: 'assaad', qMeta: 30, area: 'Linguagens' },
+          { subject: 'Filosofia / Sociologia', key: 'filosofia_sociologia', channel: 'parabolica', qMeta: 20, area: 'Humanas', altTopic: true }
+        ]
+      },
+      {
+        day: 'Quarta',
+        dayIndex: 3,
+        focus: 'Química, História & Estrutura de Redação',
+        items: [
+          { subject: 'Química', key: 'quimica', channel: 'assaad', qMeta: 35, area: 'Natureza' },
+          { subject: 'História', key: 'historia', channel: 'debora', qMeta: 25, area: 'Humanas' },
+          { subject: 'Redação (Teoria & Repertório)', key: 'redacao', channel: 'luma', qMeta: 10, area: 'Linguagens' }
+        ]
+      },
+      {
+        day: 'Quinta',
+        dayIndex: 4,
+        focus: 'Aprofundamento Matemática, Biologia & Geografia',
+        items: [
+          { subject: 'Matemática (Bloco 2 / Revisão)', key: 'matematica', channel: 'assaad', qMeta: 40, area: 'Matemática', altTopic: true },
+          { subject: 'Biologia (Bloco 2 / Questões)', key: 'biologia', channel: 'assaad', qMeta: 35, area: 'Natureza', altTopic: true },
+          { subject: 'Geografia', key: 'geografia', channel: 'thais', qMeta: 25, area: 'Humanas' }
+        ]
+      },
+      {
+        day: 'Sexta',
+        dayIndex: 5,
+        focus: 'Física, Linguagens & Atualidades',
+        items: [
+          { subject: 'Física (Bloco 2 / Questões)', key: 'fisica', channel: 'assaad', qMeta: 35, area: 'Natureza', altTopic: true },
+          { subject: 'Linguagens (Literatura & Interpretação)', key: 'linguagens', channel: 'assaad', qMeta: 25, area: 'Linguagens', altTopic: true },
+          { subject: 'Atualidades & Repertório', key: 'atualidades', channel: 'parabolica', qMeta: 15, area: 'Humanas' }
+        ]
+      },
+      {
+        day: 'Sábado',
+        dayIndex: 6,
+        focus: 'Manhã: Química + Redação | Tarde: Simulado ENEM',
+        items: [
+          { subject: 'Química (Bloco 2 / Questões)', key: 'quimica', channel: 'assaad', qMeta: 35, area: 'Natureza', altTopic: true },
+          { subject: 'Redação Completa (Prática Cronometrada)', key: 'redacao', channel: 'luma', qMeta: 1, area: 'Linguagens', isEssay: true },
+          { subject: 'Simulado ENEM (Tarde • 5h30 de Prova)', key: 'simulado', channel: 'assaad', qMeta: 90, area: 'Simulado', isSimulado: true }
+        ]
+      }
+    ];
+
+    const CHANNELS_GUIDE = [
+      {
+        id: 'assaad',
+        name: 'Plataforma Assaad',
+        subjects: 'Matemática, Física, Química, Biologia e Linguagens',
+        color: 'from-blue-600 to-usp-800',
+        url: 'https://www.youtube.com/@PlataformaAssaad',
+        method: [
+          'Assista às aulas com papel e caneta na mão: pause antes da resolução dos exemplos e tente fazer sozinha.',
+          'Foque na mentalidade de prova: entenda o padrão de cobrança do ENEM e como evitar armadilhas da TRI.',
+          'Após cada aula, resolva imediatamente de 30 a 45 questões de provas antigas do ENEM sobre aquele tema.'
+        ]
+      },
+      {
+        id: 'parabolica',
+        name: 'Parabólica (Prof. Pedro Rennó)',
+        subjects: 'Filosofia, Sociologia e Atualidades',
+        color: 'from-purple-600 to-indigo-800',
+        url: 'https://www.youtube.com/@Parabolica',
+        method: [
+          'Faça fichamentos curtos conectando cada filósofo/sociólogo a um possível eixo temático de redação.',
+          'Em Atualidades, anote dados, contextos históricos e consequências sociais para enriquecer sua argumentação.',
+          'Resolva de 20 a 25 questões interpretativas relacionando teoria filosófica aos textos-base do ENEM.'
+        ]
+      },
+      {
+        id: 'debora',
+        name: 'Débora Aladim',
+        subjects: 'História do Brasil e História Geral',
+        color: 'from-amber-600 to-orange-800',
+        url: 'https://www.youtube.com/@deboraaladim',
+        method: [
+          'Use as aulas dinâmicas para montar linhas do tempo de causa e consequência (especialmente Brasil Colônia, Império, Era Vargas e Ditadura).',
+          'Preste atenção especial aos aspectos sociais, culturais e de cidadania — o foco favorito da banca do ENEM.',
+          'Pratique 25 a 30 questões por semana analisando documentos históricos, charges e textos de época.'
+        ]
+      },
+      {
+        id: 'luma',
+        name: 'Luma e Ponto',
+        subjects: 'Redação Nota 1000 (Competências 1 a 5)',
+        color: 'from-rose-600 to-pink-800',
+        url: 'https://www.youtube.com/@lumaePonto',
+        method: [
+          'Quarta-feira: estude estrutura, conectivos, repertórios coringas e detalhamento da proposta de intervenção.',
+          'Sábado de manhã: escreva 1 redação completa à mão (30 linhas, caneta preta) cronometrando no máximo 1h15.',
+          'Autoavalie seu texto usando a grade oficial das 5 Competências antes de passar a limpo.'
+        ]
+      },
+      {
+        id: 'thais',
+        name: 'Thais Formagio',
+        subjects: 'Geografia Física, Humana e Geopolítica',
+        color: 'from-emerald-600 to-teal-800',
+        url: 'https://www.youtube.com/@ThaisFormagio',
+        method: [
+          'Domine leitura de mapas, climogramas, pirâmides etárias e gráficos demográficos.',
+          'Conecte Geografia Agrária, Urbanização e Impactos Ambientais com as questões interdisciplinares de Biologia.',
+          'Resolva 25 a 30 questões semanais focando em interpretação espacial e geopolítica contemporânea.'
+        ]
+      }
+    ];
+
+    // =========================================================================
+    // 2. ESTADO DA APLICAÇÃO & LOCALSTORAGE
+    // =========================================================================
+    const STORAGE_KEY = 'med_usp_2027_state_v1';
+
+    let appState = {
+      selectedMonth: 0,
+      selectedWeek: 0,
+      completedTasks: {}, // { taskId: true }
+      questionLogs: {},   // { taskId: { done: number, correct: number } }
+      simulados: [],      // [{ id, name, month, ling, hum, nat, mat, red, notes }]
+      errors: [],         // [{ id, subject, reason, desc, reviewed, date }]
+      streak: 0,
+      lastStudyDate: null,
+      darkMode: false
+    };
+
+    function loadState() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          appState = { ...appState, ...JSON.parse(saved) };
+        }
+      } catch (e) {
+        console.error('Erro ao carregar localStorage:', e);
+      }
+      if (appState.darkMode) {
+        document.documentElement.classList.add('dark');
+        updateThemeIcons(true);
+      }
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+      } catch (e) {
+        showToast('Aviso: não foi possível salvar no navegador.', 'error');
+      }
+    }
+
+    // =========================================================================
+    // 3. UTILITÁRIOS DE UI & NOTIFICAÇÕES
+    // =========================================================================
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      const bg = type === 'error'
+        ? 'bg-rose-600 text-white'
+        : 'bg-slate-900 dark:bg-emerald-600 text-white';
+      toast.className = `${bg} px-4 py-3 rounded-2xl shadow-xl text-xs font-semibold flex items-center gap-2 pointer-events-auto fade-in`;
+      toast.innerHTML = `<span>${type === 'error' ? '⚠️' : '✨'}</span><span>${message}</span>`;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transition = 'opacity 0.3s';
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.toggle('dark');
+      appState.darkMode = isDark;
+      updateThemeIcons(isDark);
+      saveState();
+      updateCharts();
+    }
+
+    function updateThemeIcons(isDark) {
+      const icon = isDark ? '☀️' : '🌙';
+      document.getElementById('theme-icon-desktop').textContent = icon;
+      document.getElementById('theme-icon-mobile').textContent = icon;
+    }
+
+    function toggleMobileMenu() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('mobile-overlay');
+      sidebar.classList.toggle('-translate-x-full');
+      overlay.classList.toggle('hidden');
+    }
+
+    function switchTab(tabName) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.getElementById(`tab-${tabName}`).classList.remove('hidden');
+
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        if (btn.dataset.tab === tabName) {
+          btn.className = 'nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition bg-usp-50 text-usp-700 dark:bg-usp-900/50 dark:text-sky-300';
+        } else {
+          btn.className = 'nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition';
+        }
+      });
+
+      if (window.innerWidth < 1024) {
+        document.getElementById('sidebar').classList.add('-translate-x-full');
+        document.getElementById('mobile-overlay').classList.add('hidden');
+      }
+
+      if (tabName === 'dashboard') updateDashboard();
+      if (tabName === 'cronograma') renderSchedule();
+      if (tabName === 'simulados') renderSimulados();
+    }
+
+    // =========================================================================
+    // 4. CONTADOR REGRESSIVO ENEM 2027 & STREAK
+    // =========================================================================
+    function updateCountdown() {
+      // Primeiro domingo de Novembro de 2027: 07 de Novembro de 2027
+      const enemDate = new Date('2027-11-07T13:00:00');
+      const now = new Date();
+      const diff = enemDate - now;
+      const days = Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)));
+      document.getElementById('sidebar-days-left').textContent = `${days} dias`;
+      document.getElementById('sidebar-streak').textContent = `🔥 ${appState.streak} ${appState.streak === 1 ? 'dia' : 'dias'}`;
+    }
+
+    function registerStudyToday() {
+      const todayStr = new Date().toISOString().split('T')[0];
+      if (appState.lastStudyDate === todayStr) {
+        showToast('Você já registrou sua constância de hoje! Continue firme!');
+        return;
+      }
+      appState.streak += 1;
+      appState.lastStudyDate = todayStr;
+      saveState();
+      updateCountdown();
+      showToast(`Dia estudado registrado! Constância atual: ${appState.streak} dias 🔥`);
+    }
+
+    // =========================================================================
+    // 5. GERAÇÃO E RENDERIZAÇÃO DO CRONOGRAMA (JAN A NOV)
+    // =========================================================================
+    function getTopicForWeek(subjectKey, globalWeekIndex, isAltTopic = false) {
+      if (subjectKey === 'simulado') {
+        const isSecondHalf = globalWeekIndex >= 24;
+        const simNumber = Math.floor(globalWeekIndex / 2) + 1;
+        if (!isSecondHalf) {
+          return globalWeekIndex % 2 === 0
+            ? `Simulado Diagnóstico Quinzenal #${simNumber} (90 Questões ENEM)`
+            : `Bateria Cumulativa da Semana + Revisão do Caderno de Erros`;
+        }
+        const dayType = globalWeekIndex % 2 === 0 ? 'Dia 1 (Linguagens + Humanas)' : 'Dia 2 (Natureza + Matemática)';
+        return `Simulado Completo Oficial ENEM #${globalWeekIndex - 23} — ${dayType}`;
+      }
+
+      const list = SYLLABUS_44_WEEKS[subjectKey] || [];
+      const baseTopic = list[globalWeekIndex] || 'Revisão Geral e Resolução de Provas Antigas';
+      if (isAltTopic) {
+        return `Aprofundamento & Lista de Exercícios: ${baseTopic}`;
+      }
+      return baseTopic;
+    }
+
+    function buildTaskId(monthIdx, weekIdx, dayIdx, itemIdx) {
+      return `m${monthIdx}_w${weekIdx}_d${dayIdx}_i${itemIdx}`;
+    }
+
+    function renderMonthAndWeekSelectors() {
+      const monthContainer = document.getElementById('month-selector');
+      monthContainer.innerHTML = MONTHS_INFO.map(m => {
+        const active = m.id === appState.selectedMonth;
+        return `
+          <button onclick="selectMonth(${m.id})" class="px-4 py-2 rounded-xl text-xs font-bold transition ${
+            active
+              ? 'bg-usp-700 text-white shadow'
+              : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
+          }">
+            ${m.name}
+          </button>
+        `;
+      }).join('');
+
+      const weekContainer = document.getElementById('week-selector');
+      weekContainer.innerHTML = [0, 1, 2, 3].map(w => {
+        const active = w === appState.selectedWeek;
+        const globalW = appState.selectedMonth * 4 + w + 1;
+        return `
+          <button onclick="selectWeek(${w})" class="px-3.5 py-2 rounded-xl text-xs font-bold transition ${
+            active
+              ? 'bg-emerald-600 text-white shadow'
+              : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
+          }">
+            Semana ${w + 1} <span class="opacity-75 font-normal">(Sem. ${globalW}/44)</span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function selectMonth(mIdx) {
+      appState.selectedMonth = mIdx;
+      saveState();
+      renderSchedule();
+    }
+
+    function selectWeek(wIdx) {
+      appState.selectedWeek = wIdx;
+      saveState();
+      renderSchedule();
+    }
+
+    function toggleTaskComplete(taskId) {
+      if (appState.completedTasks[taskId]) {
+        delete appState.completedTasks[taskId];
+      } else {
+        appState.completedTasks[taskId] = true;
+      }
+      saveState();
+      renderSchedule();
+      updateDashboard();
+    }
+
+    function updateQuestionLog(taskId, field, value) {
+      const num = Math.max(0, parseInt(value) || 0);
+      if (!appState.questionLogs[taskId]) {
+        appState.questionLogs[taskId] = { done: 0, correct: 0 };
+      }
+      appState.questionLogs[taskId][field] = num;
+      if (appState.questionLogs[taskId].correct > appState.questionLogs[taskId].done) {
+        appState.questionLogs[taskId].correct = appState.questionLogs[taskId].done;
+      }
+      saveState();
+      updateDashboard();
+    }
+
+    function renderSchedule() {
+      renderMonthAndWeekSelectors();
+
+      const mInfo = MONTHS_INFO[appState.selectedMonth];
+      document.getElementById('phase-tag').textContent = mInfo.phase;
+      document.getElementById('phase-title').textContent = mInfo.title;
+      document.getElementById('phase-desc').textContent = mInfo.desc;
+      document.getElementById('phase-weekly-q').textContent = mInfo.weeklyQ;
+
+      // Calcula progresso do mês selecionado
+      let monthTotal = 0;
+      let monthDone = 0;
+      for (let w = 0; w < 4; w++) {
+        WEEKLY_STRUCTURE.forEach((d, dIdx) => {
+          d.items.forEach((_, iIdx) => {
+            monthTotal++;
+            if (appState.completedTasks[buildTaskId(appState.selectedMonth, w, dIdx, iIdx)]) {
+              monthDone++;
+            }
+          });
+        });
+      }
+      const monthPct = monthTotal ? Math.round((monthDone / monthTotal) * 100) : 0;
+      document.getElementById('month-progress-badge').textContent = `Progresso de ${mInfo.name}: ${monthPct}% (${monthDone}/${monthTotal})`;
+
+      const dayFilter = document.getElementById('filter-day-select').value;
+      const globalWeekIdx = appState.selectedMonth * 4 + appState.selectedWeek;
+      const container = document.getElementById('schedule-container');
+
+      const filteredDays = dayFilter === 'ALL'
+        ? WEEKLY_STRUCTURE
+        : WEEKLY_STRUCTURE.filter(d => d.day === dayFilter);
+
+      container.innerHTML = filteredDays.map((dayObj) => {
+        const realDayIdx = WEEKLY_STRUCTURE.findIndex(d => d.day === dayObj.day);
+        return `
+          <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+            <div class="px-6 py-4 bg-slate-50/80 dark:bg-slate-800/50 border-b border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div class="flex items-center gap-3">
+                <span class="px-3 py-1 rounded-xl bg-usp-700 text-white font-display font-bold text-xs">${dayObj.day}-feira</span>
+                <span class="text-xs font-medium text-slate-500 dark:text-slate-400">${dayObj.focus}</span>
+              </div>
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400">
+                Meta do dia: ${dayObj.items.reduce((acc, it) => acc + (it.isEssay ? 0 : it.qMeta), 0)} questões ${dayObj.day === 'Sábado' ? '+ 1 Redação' : ''}
+              </span>
+            </div>
+
+            <div class="divide-y divide-slate-100 dark:divide-slate-800">
+              ${dayObj.items.map((item, itemIdx) => {
+                const taskId = buildTaskId(appState.selectedMonth, appState.selectedWeek, realDayIdx, itemIdx);
+                const isDone = !!appState.completedTasks[taskId];
+                const topic = getTopicForWeek(item.key, globalWeekIdx, item.altTopic);
+                const ch = CHANNELS[item.channel];
+                const qLog = appState.questionLogs[taskId] || { done: '', correct: '' };
+                const ytSearchUrl = item.isSimulado
+                  ? 'https://www.youtube.com/results?search_query=Resolucao+Simulado+ENEM+Plataforma+Assaad'
+                  : `${ch.searchBase}${encodeURIComponent(topic)}`;
+
+                return `
+                  <div class="p-5 flex flex-col lg:flex-row lg:items-center justify-between gap-4 transition ${isDone ? 'bg-emerald-50/30 dark:bg-emerald-950/10' : ''}">
+                    <div class="flex items-start gap-3.5 flex-1">
+                      <input type="checkbox" ${isDone ? 'checked' : ''} onchange="toggleTaskComplete('${taskId}')"
+                        class="mt-1 w-5 h-5 rounded-lg accent-emerald-600 cursor-pointer shrink-0" />
+                      <div class="space-y-1.5">
+                        <div class="flex flex-wrap items-center gap-2">
+                          <span class="text-xs font-bold text-slate-900 dark:text-white">${item.subject}</span>
+                          <a href="${ytSearchUrl}" target="_blank" rel="noopener noreferrer"
+                            class="inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-0.5 rounded-full ${ch.badge} hover:opacity-80 transition">
+                            ▶ ${ch.name} ↗
+                          </a>
+                          <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+                            ${item.isEssay ? '📝 1 Redação (30 linhas)' : `🎯 Meta: ${item.qMeta} questões`}
+                          </span>
+                        </div>
+                        <p class="text-sm font-medium ${isDone ? 'line-through text-slate-400' : 'text-slate-700 dark:text-slate-200'}">
+                          ${topic}
+                        </p>
+                      </div>
+                    </div>
+
+                    ${!item.isEssay ? `
+                      <div class="flex items-center gap-2 pl-8 lg:pl-0 shrink-0">
+                        <div class="flex flex-col">
+                          <label class="text-[10px] uppercase font-semibold text-slate-400">Feitas</label>
+                          <input type="number" min="0" value="${qLog.done}" placeholder="0"
+                            onchange="updateQuestionLog('${taskId}', 'done', this.value)"
+                            class="w-16 px-2.5 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs font-bold text-center" />
+                        </div>
+                        <div class="flex flex-col">
+                          <label class="text-[10px] uppercase font-semibold text-emerald-600 dark:text-emerald-400">Acertos</label>
+                          <input type="number" min="0" value="${qLog.correct}" placeholder="0"
+                            onchange="updateQuestionLog('${taskId}', 'correct', this.value)"
+                            class="w-16 px-2.5 py-1.5 rounded-xl border border-emerald-200 dark:border-emerald-800 bg-emerald-50/50 dark:bg-emerald-950/30 text-xs font-bold text-center text-emerald-700 dark:text-emerald-300" />
+                        </div>
+                      </div>
+                    ` : `
+                      <div class="pl-8 lg:pl-0 shrink-0">
+                        <button onclick="switchTab('simulados')" class="text-xs font-bold px-3.5 py-2 rounded-xl bg-rose-50 text-rose-700 dark:bg-rose-950/50 dark:text-rose-300 hover:opacity-80 transition">
+                          Lançar Nota Redação →
+                        </button>
+                      </div>
+                    `}
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // =========================================================================
+    // 6. DASHBOARD GERAL & FOCO DE HOJE
+    // =========================================================================
+    let areasChartInstance = null;
+    let simChartInstance = null;
+
+    function renderTodayFocus(forcedDay = 'auto') {
+      const today = forcedDay === 'auto' ? new Date().getDay() : parseInt(forcedDay);
+      const dayNames = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+      const titleEl = document.getElementById('today-title');
+      const subEl = document.getElementById('today-subtitle');
+      const contentEl = document.getElementById('today-content');
+
+      titleEl.textContent = `Foco de Hoje: ${dayNames[today]}`;
+
+      if (today === 0) {
+        subEl.textContent = 'Dia sagrado de recuperação cerebral e descanso físico.';
+        contentEl.innerHTML = `
+          <div class="p-6 rounded-2xl bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-950/40 dark:to-teal-950/40 border border-emerald-200 dark:border-emerald-800/60 flex flex-col sm:flex-row items-center gap-4">
+            <div class="text-4xl">🧘‍♀️</div>
+            <div>
+              <h4 class="font-display font-bold text-base text-emerald-900 dark:text-emerald-200">Hoje é Domingo: Zero Videoaulas, Zero Questões!</h4>
+              <p class="text-xs text-emerald-800 dark:text-emerald-300 mt-1">
+                Para conquistar uma vaga em Medicina na USP sem esgotamento (burnout), seu cérebro precisa consolidar as sinapses construídas na semana. Durma bem, caminhe, leia algo leve e recarregue as energias para Segunda-feira.
+              </p>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      const dayStruct = WEEKLY_STRUCTURE.find(d => d.dayIndex === today);
+      const mInfo = MONTHS_INFO[appState.selectedMonth];
+      const globalWeekIdx = appState.selectedMonth * 4 + appState.selectedWeek;
+      subEl.textContent = `${dayStruct.focus} • Baseado em ${mInfo.name} (Semana ${appState.selectedWeek + 1})`;
+
+      contentEl.innerHTML = `
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          ${dayStruct.items.map(item => {
+            const topic = getTopicForWeek(item.key, globalWeekIdx, item.altTopic);
+            const ch = CHANNELS[item.channel];
+            const ytSearchUrl = item.isSimulado
+              ? 'https://www.youtube.com/results?search_query=Simulado+ENEM+Plataforma+Assaad'
+              : `${ch.searchBase}${encodeURIComponent(topic)}`;
+            return `
+              <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200/70 dark:border-slate-700 flex flex-col justify-between gap-3">
+                <div>
+                  <div class="flex items-center justify-between gap-2 mb-2">
+                    <span class="text-xs font-extrabold text-usp-700 dark:text-sky-300">${item.subject}</span>
+                    <span class="text-[11px] font-bold px-2 py-0.5 rounded-full ${ch.badge}">${ch.name}</span>
+                  </div>
+                  <p class="text-xs font-medium text-slate-700 dark:text-slate-200 leading-relaxed">${topic}</p>
+                </div>
+                <div class="flex items-center justify-between pt-2 border-t border-slate-200/60 dark:border-slate-700">
+                  <span class="text-[11px] font-bold text-emerald-600 dark:text-emerald-400">
+                    ${item.isEssay ? '1 Redação Completa' : `${item.qMeta} questões`}
+                  </span>
+                  <a href="${ytSearchUrl}" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-usp-600 dark:text-sky-400 hover:underline">
+                    Assistir Aula ↗
+                  </a>
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      `;
+    }
+
+    function updateDashboard() {
+      updateCountdown();
+      renderTodayFocus(document.getElementById('day-preview-select').value);
+
+      // Total de tarefas nos 11 meses (44 semanas * 6 dias * 3 blocos = 792 blocos)
+      const totalBlocks = 11 * 4 * WEEKLY_STRUCTURE.reduce((acc, d) => acc + d.items.length, 0);
+      const doneBlocks = Object.keys(appState.completedTasks).length;
+      const pctTopics = totalBlocks ? Math.round((doneBlocks / totalBlocks) * 100) : 0;
+
+      document.getElementById('kpi-topics-pct').textContent = `${pctTopics}%`;
+      document.getElementById('kpi-topics-count').textContent = `${doneBlocks} de ${totalBlocks} blocos concluídos`;
+      document.getElementById('kpi-topics-bar').style.width = `${pctTopics}%`;
+
+      // Soma de questões feitas e acertos
+      let qDone = 0;
+      let qCorrect = 0;
+      const areaCounts = { 'Matemática': 0, 'Natureza': 0, 'Humanas': 0, 'Linguagens': 0 };
+
+      Object.entries(appState.questionLogs).forEach(([taskId, log]) => {
+        const d = Number(log.done) || 0;
+        const c = Number(log.correct) || 0;
+        qDone += d;
+        qCorrect += c;
+
+        // Identificar área pelo taskId (mX_wY_dZ_iW)
+        const parts = taskId.split('_');
+        if (parts.length === 4) {
+          const dIdx = parseInt(parts[2].replace('d', ''));
+          const iIdx = parseInt(parts[3].replace('i', ''));
+          const item = WEEKLY_STRUCTURE[dIdx]?.items[iIdx];
+          if (item && areaCounts[item.area] !== undefined) {
+            areaCounts[item.area] += d;
+          }
+        }
+      });
+
+      const qMetaTotal = 13500;
+      const qPct = Math.min(100, Math.round((qDone / qMetaTotal) * 100));
+      document.getElementById('kpi-questions-done').textContent = qDone.toLocaleString('pt-BR');
+      document.getElementById('kpi-questions-bar').style.width = `${qPct}%`;
+
+      const accPct = qDone > 0 ? Math.round((qCorrect / qDone) * 100) : 0;
+      document.getElementById('kpi-accuracy').textContent = `${accPct}%`;
+      document.getElementById('kpi-accuracy-detail').textContent = `${qCorrect} acertos em ${qDone} questões`;
+
+      // Média de simulados e redações
+      if (appState.simulados.length > 0) {
+        let totalHitsSum = 0;
+        let fullSimCount = 0;
+        let redSum = 0;
+        let redCount = 0;
+
+        appState.simulados.forEach(s => {
+          const sum = (s.ling || 0) + (s.hum || 0) + (s.nat || 0) + (s.mat || 0);
+          if (sum > 0) {
+            totalHitsSum += sum;
+            fullSimCount++;
+          }
+          if (s.red > 0) {
+            redSum += s.red;
+            redCount++;
+          }
+        });
+
+        document.getElementById('kpi-sim-avg').textContent = fullSimCount > 0 ? `${Math.round(totalHitsSum / fullSimCount)} acertos` : '--';
+        document.getElementById('kpi-essay-avg').textContent = redCount > 0 ? `Redação média: ${Math.round(redSum / redCount)} / 1000` : 'Redação média: -- / 1000';
+      } else {
+        document.getElementById('kpi-sim-avg').textContent = '--';
+        document.getElementById('kpi-essay-avg').textContent = 'Redação média: -- / 1000';
+      }
+
+      updateCharts(areaCounts);
+    }
+
+    function updateCharts(areaCounts = { 'Matemática': 0, 'Natureza': 0, 'Humanas': 0, 'Linguagens': 0 }) {
+      const isDark = document.documentElement.classList.contains('dark');
+      const textColor = isDark ? '#cbd5e1' : '#475569';
+      const gridColor = isDark ? 'rgba(148, 163, 184, 0.1)' : 'rgba(148, 163, 184, 0.2)';
+
+      const ctxAreas = document.getElementById('chart-areas');
+      if (ctxAreas) {
+        if (areasChartInstance) areasChartInstance.destroy();
+        areasChartInstance = new Chart(ctxAreas, {
+          type: 'bar',
+          data: {
+            labels: ['Matemática', 'Natureza (Fís/Quí/Bio)', 'Humanas (His/Geo/Fil/Soc)', 'Linguagens'],
+            datasets: [{
+              label: 'Questões Resolvidas',
+              data: [areaCounts['Matemática'], areaCounts['Natureza'], areaCounts['Humanas'], areaCounts['Linguagens']],
+              backgroundColor: ['#0b5ed7', '#10b981', '#d97706', '#8b5cf6'],
+              borderRadius: 10
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+              x: { ticks: { color: textColor, font: { size: 11 } }, grid: { display: false } },
+              y: { beginAtZero: true, ticks: { color: textColor }, grid: { color: gridColor } }
+            }
+          }
+        });
+      }
+
+      const ctxSim = document.getElementById('chart-simulados');
+      if (ctxSim) {
+        if (simChartInstance) simChartInstance.destroy();
+        const labels = appState.simulados.length > 0
+          ? appState.simulados.map(s => `${s.month.slice(0, 3)} - ${s.name.slice(0, 12)}`)
+          : ['Jan', 'Mar', 'Mai', 'Jul', 'Set', 'Nov (Meta USP)'];
+        const dataPoints = appState.simulados.length > 0
+          ? appState.simulados.map(s => (s.ling || 0) + (s.hum || 0) + (s.nat || 0) + (s.mat || 0))
+          : [115, 128, 138, 148, 156, 164];
+
+        simChartInstance = new Chart(ctxSim, {
+          type: 'line',
+          data: {
+            labels,
+            datasets: [{
+              label: appState.simulados.length > 0 ? 'Seus Acertos Totais' : 'Curva Projetada FMUSP (Exemplo)',
+              data: dataPoints,
+              borderColor: '#10b981',
+              backgroundColor: 'rgba(16, 185, 129, 0.15)',
+              fill: true,
+              tension: 0.35,
+              pointRadius: 5
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { labels: { color: textColor, font: { size: 11 } } } },
+            scales: {
+              x: { ticks: { color: textColor, font: { size: 11 } }, grid: { display: false } },
+              y: { min: 0, max: 180, ticks: { color: textColor }, grid: { color: gridColor } }
+            }
+          }
+        });
+      }
+    }
+
+    // =========================================================================
+    // 7. GRADE SEMANAL & GUIA DE CANAIS
+    // =========================================================================
+    function renderStaticGuides() {
+      const bpGrid = document.getElementById('weekly-blueprint-grid');
+      bpGrid.innerHTML = WEEKLY_STRUCTURE.map(d => `
+        <div class="bg-white dark:bg-slate-900 p-5 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-3 py-1 rounded-xl bg-usp-50 dark:bg-usp-900/50 text-usp-700 dark:text-sky-300 font-display font-bold text-xs">${d.day}-feira</span>
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400">
+                ${d.items.reduce((a, b) => a + (b.isEssay ? 0 : b.qMeta), 0)} questões
+              </span>
+            </div>
+            <p class="text-xs text-slate-500 mb-3">${d.focus}</p>
+            <ul class="space-y-2">
+              ${d.items.map(it => `
+                <li class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/70 flex items-center justify-between text-xs">
+                  <span class="font-semibold text-slate-800 dark:text-slate-200">${it.subject}</span>
+                  <span class="text-[11px] font-bold text-slate-500 dark:text-slate-400">${CHANNELS[it.channel].name}</span>
+                </li>
+              `).join('')}
+            </ul>
+          </div>
+        </div>
+      `).join('');
+
+      const chGrid = document.getElementById('channels-guide-grid');
+      chGrid.innerHTML = CHANNELS_GUIDE.map(c => `
+        <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="p-5 bg-gradient-to-r ${c.color} text-white">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-white/80">Canal Oficial Selecionado</span>
+              <h3 class="font-display font-extrabold text-xl mt-0.5">${c.name}</h3>
+              <p class="text-xs text-white/90 mt-1">Disciplinas: <strong>${c.subjects}</strong></p>
+            </div>
+            <div class="p-5 space-y-2.5">
+              <p class="text-xs font-bold uppercase text-slate-400">Como extrair nota máxima gratuitamente:</p>
+              <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-300">
+                ${c.method.map(m => `<li class="flex items-start gap-2"><span class="text-emerald-500 font-bold">✓</span><span>${m}</span></li>`).join('')}
+              </ul>
+            </div>
+          </div>
+          <div class="px-5 pb-5">
+            <a href="${c.url}" target="_blank" rel="noopener noreferrer"
+              class="w-full py-2.5 px-4 rounded-xl bg-slate-900 dark:bg-slate-800 hover:opacity-90 text-white font-semibold text-xs flex items-center justify-center gap-2 transition">
+              ▶ Abrir Canal ${c.name} no YouTube ↗
+            </a>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // =========================================================================
+    // 8. SIMULADOS & REDAÇÕES
+    // =========================================================================
+    function addSimulado(e) {
+      e.preventDefault();
+      const sim = {
+        id: Date.now(),
+        name: document.getElementById('sim-name').value.trim(),
+        month: document.getElementById('sim-month').value,
+        ling: parseInt(document.getElementById('sim-ling').value) || 0,
+        hum: parseInt(document.getElementById('sim-hum').value) || 0,
+        nat: parseInt(document.getElementById('sim-nat').value) || 0,
+        mat: parseInt(document.getElementById('sim-mat').value) || 0,
+        red: parseInt(document.getElementById('sim-red').value) || 0,
+        notes: document.getElementById('sim-notes').value.trim()
+      };
+      appState.simulados.push(sim);
+      saveState();
+      e.target.reset();
+      renderSimulados();
+      updateDashboard();
+      showToast('Simulado registrado com sucesso!');
+    }
+
+    function deleteSimulado(id) {
+      appState.simulados = appState.simulados.filter(s => s.id !== id);
+      saveState();
+      renderSimulados();
+      updateDashboard();
+      showToast('Registro removido.');
+    }
+
+    function renderSimulados() {
+      const tbody = document.getElementById('simulados-table-body');
+      if (appState.simulados.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="9" class="py-8 text-center text-xs text-slate-400">Nenhum simulado lançado ainda. Comece registrando seu primeiro simulado diagnóstico de Janeiro!</td></tr>`;
+        return;
+      }
+      tbody.innerHTML = appState.simulados.map(s => {
+        const total = s.ling + s.hum + s.nat + s.mat;
+        return `
+          <tr>
+            <td class="py-3 px-3 font-semibold text-xs">${s.month}</td>
+            <td class="py-3 px-3">
+              <div class="font-bold text-slate-800 dark:text-slate-100">${s.name}</div>
+              ${s.notes ? `<div class="text-[11px] text-slate-400">${s.notes}</div>` : ''}
+            </td>
+            <td class="py-3 px-3 font-semibold">${s.ling || '-'}</td>
+            <td class="py-3 px-3 font-semibold">${s.hum || '-'}</td>
+            <td class="py-3 px-3 font-semibold">${s.nat || '-'}</td>
+            <td class="py-3 px-3 font-semibold">${s.mat || '-'}</td>
+            <td class="py-3 px-3 font-extrabold text-usp-700 dark:text-sky-400">${total > 0 ? `${total}/180` : '-'}</td>
+            <td class="py-3 px-3 font-extrabold text-emerald-600 dark:text-emerald-400">${s.red > 0 ? s.red : '-'}</td>
+            <td class="py-3 px-3">
+              <button onclick="deleteSimulado(${s.id})" class="text-xs text-rose-500 hover:underline">Excluir</button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // =========================================================================
+    // 9. TIMER POMODORO & CADERNO DE ERROS
+    // =========================================================================
+    let pomoSeconds = 50 * 60;
+    let pomoInterval = null;
+    let pomoRunning = false;
+
+    function updatePomoDisplay() {
+      const mins = String(Math.floor(pomoSeconds / 60)).padStart(2, '0');
+      const secs = String(pomoSeconds % 60).padStart(2, '0');
+      document.getElementById('pomo-display').textContent = `${mins}:${secs}`;
+    }
+
+    function setPomodoroMode(minutes, label) {
+      clearInterval(pomoInterval);
+      pomoRunning = false;
+      pomoSeconds = minutes * 60;
+      document.getElementById('pomo-status').textContent = label;
+      document.getElementById('pomo-start-btn').textContent = '▶ Iniciar';
+      updatePomoDisplay();
+    }
+
+    function playGentleChime() {
+      try {
+        if (typeof Tone !== 'undefined') {
+          const synth = new Tone.Synth().toDestination();
+          synth.triggerAttackRelease('C5', '8n');
+          setTimeout(() => synth.triggerAttackRelease('G5', '4n'), 180);
+        }
+      } catch (e) {}
+    }
+
+    function togglePomodoro() {
+      const btn = document.getElementById('pomo-start-btn');
+      if (pomoRunning) {
+        clearInterval(pomoInterval);
+        pomoRunning = false;
+        btn.textContent = '▶ Retomar';
+      } else {
+        pomoRunning = true;
+        btn.textContent = '⏸ Pausar';
+        pomoInterval = setInterval(() => {
+          if (pomoSeconds > 0) {
+            pomoSeconds--;
+            updatePomoDisplay();
+          } else {
+            clearInterval(pomoInterval);
+            pomoRunning = false;
+            btn.textContent = '▶ Iniciar';
+            playGentleChime();
+            showToast('Tempo concluído! Excelente sessão de foco.');
+          }
+        }, 1000);
+      }
+    }
+
+    function resetPomodoro() {
+      setPomodoroMode(50, 'Foco Longo (50m)');
+    }
+
+    function addErrorNote(e) {
+      e.preventDefault();
+      const note = {
+        id: Date.now(),
+        subject: document.getElementById('err-subject').value,
+        reason: document.getElementById('err-reason').value,
+        desc: document.getElementById('err-desc').value.trim(),
+        reviewed: false,
+        date: new Date().toLocaleDateString('pt-BR')
+      };
+      appState.errors.unshift(note);
+      saveState();
+      document.getElementById('err-desc').value = '';
+      renderErrors();
+      showToast('Anotação salva no Caderno de Erros!');
+    }
+
+    function toggleErrorReviewed(id) {
+      const item = appState.errors.find(x => x.id === id);
+      if (item) {
+        item.reviewed = !item.reviewed;
+        saveState();
+        renderErrors();
+      }
+    }
+
+    function deleteError(id) {
+      appState.errors = appState.errors.filter(x => x.id !== id);
+      saveState();
+      renderErrors();
+    }
+
+    function renderErrors() {
+      const list = document.getElementById('errors-list');
+      if (appState.errors.length === 0) {
+        list.innerHTML = `<p class="text-xs text-slate-400 text-center py-6">Seu caderno de erros está vazio. Sempre que errar uma questão no simulado ou lista, registre-a aqui!</p>`;
+        return;
+      }
+      list.innerHTML = appState.errors.map(err => `
+        <div class="p-3.5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-800/50 flex items-start justify-between gap-3">
+          <div class="flex items-start gap-2.5">
+            <input type="checkbox" ${err.reviewed ? 'checked' : ''} onchange="toggleErrorReviewed(${err.id})" class="mt-1 accent-emerald-600 rounded cursor-pointer" />
+            <div>
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="text-xs font-bold text-usp-700 dark:text-sky-300">${err.subject}</span>
+                <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-rose-100 text-rose-700 dark:bg-rose-950 dark:text-rose-300">${err.reason}</span>
+                <span class="text-[10px] text-slate-400">${err.date}</span>
+              </div>
+              <p class="text-xs mt-1 ${err.reviewed ? 'line-through text-slate-400' : 'text-slate-700 dark:text-slate-200'}">${err.desc}</p>
+            </div>
+          </div>
+          <button onclick="deleteError(${err.id})" class="text-xs text-slate-400 hover:text-rose-500">✕</button>
+        </div>
+      `).join('');
+    }
+
+    // =========================================================================
+    // 10. EXPORTAR & IMPORTAR BACKUP JSON
+    // =========================================================================
+    function exportData() {
+      const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(appState, null, 2));
+      const dlAnchor = document.createElement('a');
+      dlAnchor.setAttribute('href', dataStr);
+      dlAnchor.setAttribute('download', `med-usp-2027-backup-${new Date().toISOString().slice(0, 10)}.json`);
+      document.body.appendChild(dlAnchor);
+      dlAnchor.click();
+      dlAnchor.remove();
+      showToast('Backup exportado com sucesso!');
+    }
+
+    function importData(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const imported = JSON.parse(e.target.result);
+          appState = { ...appState, ...imported };
+          saveState();
+          updateDashboard();
+          renderSchedule();
+          renderSimulados();
+          renderErrors();
+          showToast('Progresso restaurado com sucesso!');
+        } catch (err) {
+          showToast('Arquivo JSON inválido.', 'error');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    // =========================================================================
+    // INICIALIZAÇÃO
+    // =========================================================================
+    window.addEventListener('DOMContentLoaded', () => {
+      loadState();
+      renderStaticGuides();
+      renderSchedule();
+      renderSimulados();
+      renderErrors();
+      updateDashboard();
+    });
+  </script>
+</body>
+</html>
